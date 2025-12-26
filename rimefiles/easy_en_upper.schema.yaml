@@ -4,16 +4,15 @@
 schema:
   schema_id: easy_en_upper
   name: Easy English（英漢字典）-Upper
-  version: "202411"
+  version: '202411'
   author:
     - 洋蔥
-  description:
-    Easy English Upper
+  description: Easy English Upper
 
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ On, Off ]
+    states: [On, Off]
 
 engine:
   filters:
@@ -42,7 +41,7 @@ speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz-.;/',"
   # initials: "abcdefghijklmnopqrstuvwxyz-./'"
   # finals: ";"
-  delimiter: " "
+  delimiter: ' '
   algebra:
     # - derive/^\|$/ /
     # - xform|@|\.\/|
@@ -77,88 +76,88 @@ translator:
 key_binder:
   import_preset: default
   bindings:
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: comma, send: comma, when: paging}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: period, send: period, when: paging}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: minus, send: minus, when: paging}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: equal, send: equal, when: paging}
-### 選字翻頁 ###
-    - {accept: Left, send: Page_Up, when: paging} #直式選單用 #has_menu
-    - {accept: Right, send: Page_Down, when: paging} #直式選單用 #has_menu
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: comma, send: comma, when: paging }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: period, send: period, when: paging }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: minus, send: minus, when: paging }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: equal, send: equal, when: paging }
+    ### 選字翻頁 ###
+    - { accept: Left, send: Page_Up, when: paging } #直式選單用 #has_menu
+    - { accept: Right, send: Page_Down, when: paging } #直式選單用 #has_menu
 
 punctuator:
   # import_preset: default
   full_shape:
-    " " : { commit: "　" }
-    ',' : { commit: "，" }
+    ' ': { commit: '　' }
+    ',': { commit: '，' }
     # '.' : { commit: "．" }
-    '<' : { commit: "＜" }
-    '>' : { commit: "＞" }
-    '?' : { commit: "？" }
+    '<': { commit: '＜' }
+    '>': { commit: '＞' }
+    '?': { commit: '？' }
     # '/' : { commit: "／" }
-    ':' : { commit: "：" }
-    ';' : { commit: "；" }
+    ':': { commit: '：' }
+    ';': { commit: '；' }
     # "'" : { commit: "＇" }
-    '"' : { commit: '＂' }
-    '\\' : { commit: "＼" }
-    '|' : { commit: "｜" }
-    '`' : { commit: "｀" }
-    '~' : { commit: '～' }
-    '!' : { commit: '！' }
-    '@' : { commit: '＠' }
-    '#' : { commit: '＃' }
-    '%' : { commit: '％' }
-    '$' : { commit: '＄' }
-    '^' : { commit: '＾' }
-    '&' : { commit: '＆' }
-    '*' : { commit: '＊' }
-    '(' : { commit: '（' }
-    ')' : { commit: '）' }
-    '_' : { commit: '＿' }
+    '"': { commit: '＂' }
+    '\\': { commit: '＼' }
+    '|': { commit: '｜' }
+    '`': { commit: '｀' }
+    '~': { commit: '～' }
+    '!': { commit: '！' }
+    '@': { commit: '＠' }
+    '#': { commit: '＃' }
+    '%': { commit: '％' }
+    '$': { commit: '＄' }
+    '^': { commit: '＾' }
+    '&': { commit: '＆' }
+    '*': { commit: '＊' }
+    '(': { commit: '（' }
+    ')': { commit: '）' }
+    '_': { commit: '＿' }
     # '-' : { commit: '－' }
-    '+' : { commit: '＋' }
-    '=' : { commit: '＝' }
-    '[' : { commit: '［' }
-    ']' : { commit: '］' }
-    '{' : { commit: '｛' }
-    '}' : { commit: '｝' }
+    '+': { commit: '＋' }
+    '=': { commit: '＝' }
+    '[': { commit: '［' }
+    ']': { commit: '］' }
+    '{': { commit: '｛' }
+    '}': { commit: '｝' }
   half_shape:
     # ' ' : { commit: ' ' }
-    ',' : { commit: "," }
+    ',': { commit: ',' }
     # '.' : { commit: "." }
-    '<' : { commit: "<" }
-    '>' : { commit: ">" }
-    '?' : { commit: "?" }
+    '<': { commit: '<' }
+    '>': { commit: '>' }
+    '?': { commit: '?' }
     # '/' : { commit: "/" }
-    ':' : { commit: ":" }
-    ';' : { commit: ";" }
+    ':': { commit: ':' }
+    ';': { commit: ';' }
     # "'" : { commit: "'" }
-    '"' : { commit: '"' }
-    '\\' : { commit: "\\" }
-    '|' : { commit: "|" }
-    '`' : { commit: "`" }
-    '~' : { commit: '~' }
-    '!' : { commit: '!' }
-    '@' : { commit: '@' }
-    '#' : { commit: '#' }
-    '%' : { commit: '%' }
-    '$' : { commit: '$' }
-    '^' : { commit: '^' }
-    '&' : { commit: '&' }
-    '*' : { commit: '*' }
-    '(' : { commit: '(' }
-    ')' : { commit: ')' }
-    '_' : { commit: '_' }
+    '"': { commit: '"' }
+    '\\': { commit: "\\" }
+    '|': { commit: '|' }
+    '`': { commit: '`' }
+    '~': { commit: '~' }
+    '!': { commit: '!' }
+    '@': { commit: '@' }
+    '#': { commit: '#' }
+    '%': { commit: '%' }
+    '$': { commit: '$' }
+    '^': { commit: '^' }
+    '&': { commit: '&' }
+    '*': { commit: '*' }
+    '(': { commit: '(' }
+    ')': { commit: ')' }
+    '_': { commit: '_' }
     # '-' : { commit: '-' }
-    '+' : { commit: '+' }
-    '=' : { commit: '=' }
-    '[' : { commit: '[' }
-    ']' : { commit: ']' }
-    '{' : { commit: '{' }
-    '}' : { commit: '}' }
+    '+': { commit: '+' }
+    '=': { commit: '=' }
+    '[': { commit: '[' }
+    ']': { commit: ']' }
+    '{': { commit: '{' }
+    '}': { commit: '}' }
 
 recognizer:
   import_preset: default

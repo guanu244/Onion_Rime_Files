@@ -2,13 +2,13 @@
 ##########《蝦米 plus 設定主頁》############
 schema:
   author:
-    - "洋蔥"
+    - '洋蔥'
   description: |
     輸入法
 
-  name: "❖分別調出蝦米(plus)❖"
+  name: '❖分別調出蝦米(plus)❖'
   schema_id: dif1
-  version: "202512"
+  version: '202512'
   dependencies:
     - punct_ovff
     - dif1_jphi
@@ -28,35 +28,35 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: ["中文", "英文"]
+    states: ['中文', '英文']
   - name: full_shape
     reset: 0
-    states: ["半形", "全形"]
+    states: ['半形', '全形']
   - name: ascii_punct #當鍵位被佔用，在大千注音鍵盤無法作用！
     reset: 0
-    states: [ "。，", "．，" ]
+    states: ['。，', '．，']
   - name: simplification
     reset: 0
-    states: ["原體", "简体"]
+    states: ['原體', '简体']
   - name: character_range_bhjm
     reset: 0
-    states: ["完整", "精簡"]
-#   - options: [ utf8, big5, gbk, gb2312]
-# #    reset: 0
-#     states:
-#       - UTF-8
-#       - BIG5
-#       - GBK
-#       - GB2312 #GB2312有Bug
+    states: ['完整', '精簡']
+  #   - options: [ utf8, big5, gbk, gb2312]
+  # #    reset: 0
+  #     states:
+  #       - UTF-8
+  #       - BIG5
+  #       - GBK
+  #       - GB2312 #GB2312有Bug
   - name: emoji_segestion
     reset: 1
-    states: [ 🈚️, 🈶️ ]
+    states: [🈚️, 🈶️]
   - name: simplify_comment
     # reset: 0
-    states: [ 編碼, 無編 ]
+    states: [編碼, 無編]
   - name: back_mark
     reset: 1
-    states: [ 無註, 註釋 ]
+    states: [無註, 註釋]
   # - name: back_mark_series
   #   reset: 1
   #   # states: [ 無註, 註釋 ]
@@ -65,26 +65,26 @@ switches:
     # states: [ 無, 註 ]
   - name: unicode_comment
     reset: 0
-    states: [ '🄽', '🅄' ]
+    states: ['🄽', '🅄']
     # states: [ 'nil', 'Unicode(URL)' ]
   # - name: debug_comment
   #   reset: 0
-    # states: [ 'Ⓝ', 'Ⓓ' ]
-    # states: [ 'normal', 'Debug' ]
+  # states: [ 'Ⓝ', 'Ⓓ' ]
+  # states: [ 'normal', 'Debug' ]
   - name: en_sort
     reset: 0
-    states: [ 個排, 序排 ]
+    states: [個排, 序排]
 
 engine:
   filters:
     - simplifier@character_range_bhjm
     # - lua_filter@charset_filter2  #去除opencc轉換後留下的「᰼᰼」。
-#    - charset_filter@big5
-#    - charset_filter@gbk
-#    - charset_filter@gb2312
+    #    - charset_filter@big5
+    #    - charset_filter@gbk
+    #    - charset_filter@gb2312
     - reverse_lookup_filter@top_reverse_lookup
     - reverse_lookup_filter@pt_reverse_lookup
-    - lua_filter@mix_cf2_cfp_filter  # 合併 charset_filter2 和 comment_filter_plus，兩個 lua filter 太耗效能。
+    - lua_filter@mix_cf2_cfp_filter # 合併 charset_filter2 和 comment_filter_plus，兩個 lua filter 太耗效能。
     # - lua_filter@comment_filter_plus
     - reverse_lookup_filter@e_reverse_lookup
     - lua_filter@en_sort_filter
@@ -101,7 +101,7 @@ engine:
     - reverse_lookup_filter@phonetic_reverse_lookup
     # - reverse_lookup_filter@e_reverse_lookup
     - uniquifier
-    - lua_filter@comment_filter_unicode  # unicode 和 debug 分開，同時開啟無法記憶
+    - lua_filter@comment_filter_unicode # unicode 和 debug 分開，同時開啟無法記憶
     # - lua_filter@comment_filter_debug  # unicode 和 debug 分開，同時開啟無法記憶
     # - lua_filter@comment_filter_unicode_debug
   processors:
@@ -143,7 +143,7 @@ engine:
     - punct_segmentor
     - fallback_segmentor
   translators:
-#以下的排序會嚴重影響到出字詞的排序，甚至會錯亂
+    #以下的排序會嚴重影響到出字詞的排序，甚至會錯亂
     - punct_translator
     - lua_translator@lua_custom_phrase
     # - table_translator@custom_phrase
@@ -176,37 +176,37 @@ mf_translator:
   prefix: "'/"
 
 lua_custom_phrase:
-  user_dict: "dif1_phrase"
+  user_dict: 'dif1_phrase'
   # user_dict: "lua_custom_phrase"
 ################################### 濾鏡 ######################################
 zh_cn:
   opencc_config: tw2s.json
   tips: all
-  tags: [ abc ]
+  tags: [abc]
 
 character_range_bhjm:
   opencc_config: ocm_moedict_big5e_hkscs_jis.json #s2tw.json #t2tw.json
   option_name: character_range_bhjm
-  tags: [ abc, reverse2_lookup, reverse3_lookup ]
+  tags: [abc, reverse2_lookup, reverse3_lookup]
 #  tips: all
 
 emoji_switch:
   opencc_config: emoji_t.json
   option_name: emoji_segestion
-  tags: [ abc ]
+  tags: [abc]
   tips: all
-  comment_format: 
+  comment_format:
     - xform/^.+$/ /
 
 back_mark_series:
   opencc_config: back_mark_series.json
   option_name: back_mark
-  tags: [ emoji_series ]
+  tags: [emoji_series]
 
 back_mark:
   opencc_config: back_mark.json
   option_name: back_mark
-  tags: [ latin_lookup, jphi_lookup, jpka_lookup, korea_lookup, fs_lookup ]
+  tags: [latin_lookup, jphi_lookup, jpka_lookup, korea_lookup, fs_lookup]
 
 # back_mark_series:
 #   opencc_config: back_mark_series.json
@@ -236,31 +236,43 @@ punct_mark:
   opencc_config: punct_mark.json
   option_name: punct_mark
   show_in_comment: true
-  tags: [ punct ]
+  tags: [punct]
   tips: all
   comment_format:
     - erase/^.*〔.*〕.+$/
     - erase/^.+〔.*〕$/
 
 mix_cf2_cfp_filter:
-  tags: [ abc, pt, reverse2_lookup, reverse3_lookup, latin_lookup, jphi_lookup, jpka_lookup, korea_lookup, fs_lookup, emoji_series ]
+  tags:
+    [
+      abc,
+      pt,
+      reverse2_lookup,
+      reverse3_lookup,
+      latin_lookup,
+      jphi_lookup,
+      jpka_lookup,
+      korea_lookup,
+      fs_lookup,
+      emoji_series,
+    ]
 
 en_sort_filter:
-  tags: [ easy_en ]
+  tags: [easy_en]
 
 convert_english_filter:
-  tags: [ easy_en ]
+  tags: [easy_en]
 
 convert_japan_filter:
-  tags: [ japan ]
+  tags: [japan]
 ################################### 選單 ######################################
 menu:
-  alternative_select_keys: "0123456789"
+  alternative_select_keys: '0123456789'
   page_size: 9
 ################################### 拼寫 ######################################
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz;-"
-  delimiter: "|`"
+  alphabet: 'abcdefghijklmnopqrstuvwxyz;-'
+  delimiter: '|`'
   algebra:
     - abbrev/-@/-/ #修改順序用
 ################################### 短語和外掛標點 ######################################
@@ -286,7 +298,7 @@ pt:
     - xform/^/〔蝦符〕/
 
 pt_reverse_lookup:
-  tags: [ pt ]
+  tags: [pt]
   overwrite_comment: true
   dictionary: punct_ovff
   comment_format:
@@ -294,7 +306,7 @@ pt_reverse_lookup:
     - xform| v[][]+v?||
     - xform/ /   /
     - xform/^/  /
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|'
     # - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
 ################################### 主引擎 ######################################
 translator:
@@ -306,7 +318,7 @@ translator:
   enable_completion: false
   enable_user_dict: true
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/\|/  /
     - xform/`/  /
 ####################### 新單字固頂功能 #######################
@@ -320,14 +332,14 @@ top_fixed:
   initial_quality: 1000
 ####################### 後方顯示嘸米碼 #######################
 top_reverse_lookup:
-  tags: [ abc ]
+  tags: [abc]
   overwrite_comment: false
   dictionary: dif1.extended
   comment_format:
     - xform/ /  /
     - xform/^/  /
     - xform/-@/-/
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|'
 ######################調出其他語言之翻譯器(結尾符號調出各國語言輸入)################
 jphi_lookup:
   tag: jphi_lookup
@@ -336,7 +348,7 @@ jphi_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: ","
+  suffix: ','
   disable_user_dict_for_patterns:
     - ^[kstnhmrgzdbp][aiueo],$
     - ^[sc]hi,$
@@ -350,7 +362,7 @@ jphi_lookup:
     - ^j[auo],$
     - ^-{1,2},$
   preedit_format:
-    - "xlit|,.|AB|"
+    - 'xlit|,.|AB|'
     - xform/AA/ (組)/
     - xform/BB/ (組)/
     - xform/A/ (平)/
@@ -365,7 +377,7 @@ jpka_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: "."
+  suffix: '.'
   disable_user_dict_for_patterns:
     - ^[kstnhmrgzdbp][aiueo][.]$
     - ^[sc]hi[.]$
@@ -379,7 +391,7 @@ jpka_lookup:
     - ^j[auo][.]$
     - ^-{1,2}[.]$
   preedit_format:
-    - "xlit|.,|AB|"
+    - 'xlit|.,|AB|'
     - xform/AA/ (組)/
     - xform/BB/ (組)/
     - xform/A/ (片)/
@@ -394,12 +406,12 @@ korea_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: "/"
+  suffix: '/'
   disable_user_dict_for_patterns:
     - ^[a-z]{1,2}[/]$
   preedit_format:
     # - "xlit|abcdefghijklmnopqrstuvwxyz/|ㅂㅅㄷㅊㅌㅑㅕㅐㅣㅓㅏㄴㅛㅗㅁㅔㅇㅠㄹㅜㅈㅡㅎㅍㄱㅋA|"
-    - "xlit|/|A|"
+    - 'xlit|/|A|'
     # - xform/AA/ (韓-HJ)/
     - xform/AA/ (韓-擴)/
     - xform/A/ (韓)/
@@ -429,11 +441,11 @@ gr_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: "["
+  suffix: '['
   disable_user_dict_for_patterns:
     - ^[a-z][[]$
   preedit_format:
-    - "xlit|[|A|"
+    - 'xlit|[|A|'
     - xform/AA/ (希-大)/
     - xform/A/ (希)/
     - xform/\|/ /
@@ -446,7 +458,7 @@ cyr_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: "]"
+  suffix: ']'
   disable_user_dict_for_patterns:
     - ^[a-z][]]$
     - ^b[fir][]]$
@@ -455,7 +467,7 @@ cyr_lookup:
     - ^rk[]]$
     - ^wy[]]$
   preedit_format:
-    - "xlit|]|A|"
+    - 'xlit|]|A|'
     - xform/AAA/ (俄-組合)/
     - xform/AA/ (俄-大)/
     - xform/A/ (俄)/
@@ -469,11 +481,11 @@ fs_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  suffix: "="
+  suffix: '='
   disable_user_dict_for_patterns:
     - ^[a-z]=$
   preedit_format:
-    - "xlit|=|A|"
+    - 'xlit|=|A|'
     - xform/AA/ (全-大)/
     - xform/A/ (全)/
     - xform/\|/ /
@@ -493,7 +505,7 @@ easy_en:
   # initial_quality: 1000
   prefix: "'."
   # suffix: " "
-  tips: "《Easy》▶"
+  tips: '《Easy》▶'
   extra_tags:
     - easy_en_upper
     # - easy_en_script
@@ -504,7 +516,7 @@ easy_en:
     # - xform|》[/]|》/ |
     - xform/\|/ /
   comment_format:
-    - xform/.+//  #刪除尚未輸入完整碼之提示 ~abc
+    - xform/.+// #刪除尚未輸入完整碼之提示 ~abc
   #   # - xform|[~a-z;/.'-]+||
   #   - xform/^.+⌗// #easy_en_super用
   #   - xform|^[ a-z;/.'-]+|| #easy_en_super用
@@ -537,7 +549,7 @@ easy_en_upper:
     - xform/\\/ /
 
 e_reverse_lookup:
-  tags: [ easy_en ]
+  tags: [easy_en]
   overwrite_comment: true
   dictionary: easy_en_lcomment #easy_en_super
   comment_format:
@@ -554,8 +566,8 @@ japan:
   enable_user_dict: true
   prefix: "',"
   suffix: "'"
-  tips: "《純日語》▶"
-  closing_tips: "◀《純日語》"
+  tips: '《純日語》▶'
+  closing_tips: '◀《純日語》'
   disable_user_dict_for_patterns:
     - ^-{1,2}$
   preedit_format:
@@ -564,28 +576,28 @@ japan:
 ################################### 使用注音反查嘸蝦米碼 ######################################
 reverse2_lookup:
   tag: reverse2_lookup
-  dictionary: "Mount_bopomo.extended"
+  dictionary: 'Mount_bopomo.extended'
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
   prefix: "';"
   suffix: "'"
-  tips: "《注音反查》▶"
-  closing_tips: "◀《注音反查》"
+  tips: '《注音反查》▶'
+  closing_tips: '◀《注音反查》'
   preedit_format:
-    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - 'xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|'
     - xform/^/《注音反查》/
     - xform/\|/  /
     - xform/`/  /
 
 ovff_reverse_lookup:
-  tags: [ reverse2_lookup ]
+  tags: [reverse2_lookup]
   overwrite_comment: true
-  dictionary: "dif1.extended"
+  dictionary: 'dif1.extended'
   comment_format:
     - xform/ /  /
     - xform/^/  /
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ|'
 ################################### 使用嘸蝦米反查注音碼 ######################################
 reverse3_lookup:
   # __include: /top_fixed  # user_dict 詞彙會混到 abc 中，有可能不顯示，也可能顯示影響。
@@ -600,21 +612,21 @@ reverse3_lookup:
   enable_user_dict: false
   prefix: ";'"
   suffix: "'"
-  tips: "《查注音》▶"
-  closing_tips: "◀《查注音》"
+  tips: '《查注音》▶'
+  closing_tips: '◀《查注音》'
   initial_quality: 1000
   extra_tags:
     - reverse3_lookup_extra
   preedit_format:
     - xform/^/《查注音》/
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/\|/  /
     - xform/`/  /
 
 reverse3_lookup_extra:
   # __include: /translator  # user_dict 詞彙會混到 abc 中，有可能不顯示，也可能顯示影響。
   # __include: /top_fixed  # user_dict 詞彙會混到 abc 中，有可能不顯示，也可能顯示影響。
-  __include: /reverse3_lookup  # 使用此條目，選字時才不會出現 bug！不然會 reverse3_lookup 和 reverse3_lookup_extra 會被認定分開狀態。
+  __include: /reverse3_lookup # 使用此條目，選字時才不會出現 bug！不然會 reverse3_lookup 和 reverse3_lookup_extra 會被認定分開狀態。
   # tag: reverse3_lookup_extra
   # dictionary: Mount_ocm.extended
   # enable_charset_filter: false #true
@@ -627,13 +639,13 @@ reverse3_lookup_extra:
   initial_quality: 1
   preedit_format:
     - xform/^/《查注音》/
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/\|/  /
     - xform/`/  /
 
 phonetic_reverse_lookup:
-  tags: [ reverse3_lookup ]
-  dictionary: "Mount_bopomo.extended"
+  tags: [reverse3_lookup]
+  dictionary: 'Mount_bopomo.extended'
   overwrite_comment: true
   comment_format:
     - xform/iu/iU/ #iou
@@ -659,7 +671,7 @@ phonetic_reverse_lookup:
     - xform/er/R/
     - xform/eh/E/
     - xform/([iv])e/$1E/
-    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|'
     - xform/^/ /
     - xform/ /  /
 #    - xform/ /] [/
@@ -674,11 +686,11 @@ all_bpm:
   enable_user_dict: false
   prefix: "';'"
   suffix: "'"
-  tips: "《注音文》▶"
-  closing_tips: "◀《注音文》"
+  tips: '《注音文》▶'
+  closing_tips: '◀《注音文》'
   preedit_format:
     - xform/^/《注音文》/
-    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - 'xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|'
     - xform/\|//
     - xform/`//
 ################################### 系列符號 ######################################
@@ -692,23 +704,23 @@ emoji_series:
   enable_completion: false
   # sentence_over_completion: false
   enable_user_dict: true
-  prefix: ";"
+  prefix: ';'
   suffix: "'" #注意開啟會干擾「;'」開頭之掛載，需特別設定
-  tips: "《EMOJI集》▶"
-  closing_tips: "◀《EMOJI集》"
+  tips: '《EMOJI集》▶'
+  closing_tips: '◀《EMOJI集》'
   preedit_format:
     __include: element_ocm:/emoji_series
 ################################### 標點符號處理 ######################################
 punctuator:
   import_preset: punct_ocm
   full_shape:
-    "-" : [ "－" ]
+    '-': ['－']
   half_shape:
-    "-" : [ "-" ]
+    '-': ['-']
   symbols:
-    "s." : [ "？" ] #
-    "v." : [ "！" ] #
-    "c." : [ "！" ] #
+    's.': ['？'] #
+    'v.': ['！'] #
+    'c.': ['！'] #
 ################################ 按鍵處理 ###################################
 key_binder:
   import_preset: default
@@ -721,19 +733,19 @@ editor:
 #################################### 用正則調出各種功能 ############################################
 recognizer:
   patterns:
-#    uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$" #開啟用shift打大寫，會出現選單，不直接上屏。
+    #    uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$" #開啟用shift打大寫，會出現選單，不直接上屏。
     # url: "^(www[.]|https?:|ftp:|mailto:|file:).*$"
     # url: "^(https?:|ftp:|mailto:|file:).*$"
     # email: "^[a-z][-_.0-9a-z]*@.*$"
     punct: "^[svc][.]$|===?$|=''?=?'?'?$|=?[][][][]?'?$|=?[[][[]?'?=?[]]?[]]?'?$|=``?$|=[-,./;][-,./;]?$|=,,?=[.][.]?$|=[0-9]$|=9=0$|==[].,90'[]+$"
     pt: "^[,.][,.'a-z]*$|^'['a-z]*$|^,[][]+[a-z]*$|^,v[][]+$" #|^v[][]+v?$|^[][]+[a-z]*$"
-    jphi_lookup: "^[-a-z]+,[-a-z,.]*$"
-    jpka_lookup: "^(?![svc][.]|www[.])[-a-z]+[.][-a-z.,]*$"
-    korea_lookup: "^[a-z]+/[a-z/]*$"
+    jphi_lookup: '^[-a-z]+,[-a-z,.]*$'
+    jpka_lookup: '^(?![svc][.]|www[.])[-a-z]+[.][-a-z.,]*$'
+    korea_lookup: '^[a-z]+/[a-z/]*$'
     latin_lookup: "^[-a-z]+'[-a-z']*$"
-    cyr_lookup: "^[a-z]+[]][]a-z]*$"
-    gr_lookup: "^[a-z]+[[][a-z[]*$"
-    fs_lookup: "^[-a-z]+=[-a-z=]*$"
+    cyr_lookup: '^[a-z]+[]][]a-z]*$'
+    gr_lookup: '^[a-z]+[[][a-z[]*$'
+    fs_lookup: '^[-a-z]+=[-a-z=]*$'
     # reverse2_lookup: "';[-.,;/0-9a-z `|]*'?$"  # 去除開頭「^」限定，使其接續不跳掉。（舊的lua寫法需這樣設定！）
     reverse2_lookup: "^';[-.,;/0-9a-z `|]*'?$"
     reverse3_lookup: "^;'[a-z`|]*'?$"
@@ -741,11 +753,11 @@ recognizer:
     japan: "^',[-a-z,.;/|]*'?$" #"^',[-a-z;|]*'?$" #^',[-a-z,./;|]*'?$
     emoji_series: "^;$|^;[a-z]+'?$|^;;[-0-9a-z]'?$|^;[0-9]'?$|^;[0-9]-[0-9]?'?$"
     # emoji_series: "^;[a-z]*$|^;;[-0-9a-z]$|^;[0-9]$|^;[0-9]-[0-9]?$"
-#    第一個不能刪，否則無法用數字選擇。
-#    「-」不能刪，顏文字會用到。
+    #    第一個不能刪，否則無法用數字選擇。
+    #    「-」不能刪，顏文字會用到。
     # all_bpm: "';'[-a-z0-9.,/; ]*'?$"  # 去除開頭「^」限定，使其接續不跳掉。（舊的lua寫法需這樣設定！）
     all_bpm: "^';'[-a-z0-9.,/; ]*'?$"
     # lua: "^;;$|^[a-z][-_.0-9a-z]*@.*$|^(www[.]|https?:|ftp:|mailto:|file:).*$|^'/[a-z]*$|^'/[;/'][a-z.,/'-]*$|^'/[rq0-9.-][asrvxqwymd0-9.,/()^*+-]*$|^'/[xucoi][0-9a-f]+$"
-    instruction_ocm: "^;;?$"  #不開起，「;;」會顯示不了。
-    email_url_translator: "^[a-z][-_.0-9a-z]*@.*$|^(www[.]|https?:|ftp:|mailto:|file:).*$"
+    instruction_ocm: '^;;?$' #不開起，「;;」會顯示不了。
+    email_url_translator: '^[a-z][-_.0-9a-z]*@.*$|^(www[.]|https?:|ftp:|mailto:|file:).*$'
     mf_translator: "^'/[a-z,]*$|^'/[;/'][a-z.,/'-]*$|^'/[rq0-9.-][asrvxqwymd0-9.,/()^*+-]*$|^'/[xucoi][0-9a-f]+$"

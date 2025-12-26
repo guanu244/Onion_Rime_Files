@@ -5,7 +5,7 @@
 schema:
   schema_id: punct_ovff # 注意此ID與文件名裏 .schema.yaml 之前的部分相同
   name: 單符號_蝦米 # 將在〔輸入法選單〕中顯示
-  version: "202405" # 版本說明，這是文字類型而非整數或小數，如 "1.2.3"
+  version: '202405' # 版本說明，這是文字類型而非整數或小數，如 "1.2.3"
   author:
     - 製作人
   description: |
@@ -14,7 +14,7 @@ schema:
 switches: #選單f4
   - name: ascii_mode #中英文轉換開關。預設1爲英文，0爲中文，快速鍵  shift
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [中文, 英文]
   # - name: full_shape #- name:full_shape是全角符號／半角符號開關。0爲半角，1爲全角, 快速鍵  shift+空格
   #   reset: 0
   #   states: [ 半形, 全形 ]
@@ -29,7 +29,7 @@ engine:
     - selector #選字，處理數字選字鍵、上、下候選定位、換頁鍵
     - navigator #輸入欄內的 光標移動鍵
     - express_editor #編輯器，啟用：(空格鍵：輸入中文)(enter鍵：輸入英文)/不啟用：(空格鍵：輸入中文)(enter鍵：輸入中文)。回退鍵 等
-#    - fluency_editor
+  #    - fluency_editor
   segmentors: #二、這批組件識別不同內容類型，將輸入碼分段
     - ascii_segmentor #※ 標識_西文段落
     - matcher
@@ -41,12 +41,12 @@ engine:
     - table_translator
 
 menu: #菜單選項
-  alternative_select_keys: "0123456789" #重碼選擇鍵，如沒有寫-預設 ctrl+123456789
+  alternative_select_keys: '0123456789' #重碼選擇鍵，如沒有寫-預設 ctrl+123456789
   page_size: 10 #選單 每頁 顯示 個數
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz[];,'./-="
-  delimiter: " " #上屛時的音節(字母)間分隔號
+  delimiter: ' ' #上屛時的音節(字母)間分隔號
 
 translator:
   dictionary: punct_ovff
@@ -66,16 +66,16 @@ translator:
 key_binder:
   import_preset: default
   bindings:
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: Return, send: space, when: has_menu}
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: Return, send: space, when: has_menu }
 
 punctuator:
   import_preset: default
 
 recognizer:
-#  import_preset: default
+  #  import_preset: default
   patterns:
     uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"

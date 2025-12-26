@@ -5,27 +5,35 @@
 __include: Mount_ocm.schema:/
 
 __patch:
-########################################################################
-## 移至 uniquifier 去重條目之前！
+  ########################################################################
+  ## 移至 uniquifier 去重條目之前！
   # - engine/filters/@before 6: lua_filter@*filter_comment_filter_debug
-## 遮屏取代 uniquifier 去重條目！
+  ## 遮屏取代 uniquifier 去重條目！
   # - engine/filters/@6:
   #   lua_filter@*filter_comment_filter_debug
-########################################################################
-  - switches/@5/reset: 1  #初始時，abc 和 pt 時，編碼是否顯示 (0為有編碼，1為無編碼)
-  - key_binder/bindings/@41:
-    {accept: Control+bracketleft, unset_option: simplify_comment, when: always} #提示碼開關
-  - key_binder/bindings/@43:
-    {accept: Control+Shift+bracketleft, set_option: simplify_comment, when: always} #提示碼開關
-  - key_binder/bindings/@45:
-    {accept: Control+Shift+braceleft, set_option: simplify_comment, when: always} #提示碼開關
-  - Mount_ocm_encoder.custom:/patch?  #如有 custom 檔來修正，有此條目才可作用。
-
+  ########################################################################
+  - switches/@5/reset: 1 #初始時，abc 和 pt 時，編碼是否顯示 (0為有編碼，1為無編碼)
+  - key_binder/bindings/@41: {
+        accept: Control+bracketleft,
+        unset_option: simplify_comment,
+        when: always,
+      } #提示碼開關
+  - key_binder/bindings/@43: {
+        accept: Control+Shift+bracketleft,
+        set_option: simplify_comment,
+        when: always,
+      } #提示碼開關
+  - key_binder/bindings/@45: {
+        accept: Control+Shift+braceleft,
+        set_option: simplify_comment,
+        when: always,
+      } #提示碼開關
+  - Mount_ocm_encoder.custom:/patch? #如有 custom 檔來修正，有此條目才可作用。
 
 schema:
   schema_id: Mount_ocm_encoder
-  name: "❖蝦米(單出-造詞)❖"
-  version: "202512"
+  name: '❖蝦米(單出-造詞)❖'
+  version: '202512'
 
 # switches/+:
 #   - name: debug_comment
@@ -73,7 +81,7 @@ engine:
     - script_translator@reverse2_lookup
     - table_translator@reverse3_lookup
     - script_translator@reverse3_lookup_extra
-    - table_translator@makephrase  #某些太多重碼的字，某些情況造不出？
+    - table_translator@makephrase #某些太多重碼的字，某些情況造不出？
     # - table_translator@phrase_up  #某些太多重碼的字，某些情況造不出？  #使造詞能出現在一般輸入中（可省略，會自動增加到「方案名稱」的用戶詞典中，除非要於 abc 中固定「詞」的順序）
 
 # comment_filter_plus:  # 只過濾[ abc, pt ]，[ makephrase ]不過濾。
@@ -86,28 +94,28 @@ engine:
 #     # - phrase_up
 
 speller:
-  max_code_length: ""
+  max_code_length: ''
   # algebra:
   ############
-    # #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
-    # - xform/^~(.*)$/$1/
-    # - derive/^([a-z]+)$/$1`/
+  # #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
+  # - xform/^~(.*)$/$1/
+  # - derive/^([a-z]+)$/$1`/
   ############
-    # - xform/^(.*)$/`$1/
-    # - derive/^`(.*)$/$1;/
-    # - xform/^(.*)$/$1@/
-    # - abbrev/^(.*)@$/$1;/
-    # - derive/^(.*)@$/$1;/
-    # - xform/^(.*)$/$1;/
+  # - xform/^(.*)$/`$1/
+  # - derive/^`(.*)$/$1;/
+  # - xform/^(.*)$/$1@/
+  # - abbrev/^(.*)@$/$1;/
+  # - derive/^(.*)@$/$1;/
+  # - xform/^(.*)$/$1;/
   ############
-    # - fuzz/^(.*)$/$1;/
+  # - fuzz/^(.*)$/$1;/
   ############
 
 translator:
   dictionary: Mount_ocm_encoder.extended
   initial_quality: 100
-  enable_encoder: true  #和 enable_user_dict 連動配合開啟。
-  enable_user_dict: true  #可改變「詞條」順序，引用端為 false。
+  enable_encoder: true #和 enable_user_dict 連動配合開啟。
+  enable_user_dict: true #可改變「詞條」順序，引用端為 false。
 
 # ocm_phrases:
 #   __include: Mount_ocm.schema:/translator
@@ -116,13 +124,13 @@ translator:
 #   enable_encoder: true
 #   enable_user_dict: true
 
-top_fixed:  #固定置頂單字順序
+top_fixed: #固定置頂單字順序
   __include: Mount_ocm.schema:/translator
   initial_quality: 1000
 
 tr_reverse_lookup:
   dictionary: Mount_ocm_encoder.extended
-  tags: [ abc, makephrase ] #掛在這個tag所對應的翻譯器上
+  tags: [abc, makephrase] #掛在這個tag所對應的翻譯器上
   # tags: [ makephrase ] #掛在這個tag所對應的翻譯器上
 
 ovff_reverse_lookup:
@@ -139,20 +147,20 @@ makephrase:
   enable_sentence: true
   enable_completion: false
   # sentence_over_completion: false
-  enable_user_dict: false  #不讓候選項（尤其單字）變動順序
+  enable_user_dict: false #不讓候選項（尤其單字）變動順序
   # max_phrase_length: 4
   # strict_spelling: false #true
   prefix: ";';" #'`'
   suffix: "'"
-  tips: "《查碼&造詞》▶"
-  closing_tips: "◀《查碼&造詞》"
+  tips: '《查碼&造詞》▶'
+  closing_tips: '◀《查碼&造詞》'
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/^/《查碼&造詞》/
     - xform/\|/  /
     - xform/`/  /
 
-phrase_up:  #使造詞能出現在一般輸入中（可省略，會自動增加到「方案名稱」的用戶詞典中，除非要於 abc 中固定「詞」的順序）
+phrase_up: #使造詞能出現在一般輸入中（可省略，會自動增加到「方案名稱」的用戶詞典中，除非要於 abc 中固定「詞」的順序）
   # __include: Mount_ocm.schema:/translator
   dictionary: Mount_ocm_encoder.extended
   initial_quality: 0 #10
@@ -162,16 +170,16 @@ phrase_up:  #使造詞能出現在一般輸入中（可省略，會自動增加�
   enable_sentence: false
   enable_completion: false
   # sentence_over_completion: false
-  enable_user_dict: true  #使造詞能夠顯示在 abc 上。
+  enable_user_dict: true #使造詞能夠顯示在 abc 上。
   # max_phrase_length: 10  #輸入十個字以下，可用造詞打出，超過不作用！
-#   disable_user_dict_for_patterns:
-#     - "^.*;;?$"
-#     - "^[]',.[]].*$"
-#   comment_format:  #沒有所有造的詞都顯示「☯」圖示，且會被 lua_filter@comment_filter_plus 遮屏。
-#     - xform/^(.*)$/$1《自造詞》/
-#     - xform/$/《自造詞》/
+  #   disable_user_dict_for_patterns:
+  #     - "^.*;;?$"
+  #     - "^[]',.[]].*$"
+  #   comment_format:  #沒有所有造的詞都顯示「☯」圖示，且會被 lua_filter@comment_filter_plus 遮屏。
+  #     - xform/^(.*)$/$1《自造詞》/
+  #     - xform/$/《自造詞》/
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/$/\t《自造詞》/
     - xform/\|/  /
     - xform/`/  /

@@ -4,7 +4,7 @@
 schema:
   schema_id: symbols_bpmf_double
   name: 系列符號(雙拼注音)
-  version: "202405"
+  version: '202405'
   description: |
     由Unicode中「Emoticons」部份和「Miscellaneous Symbols and Pictographs」部份合成。
     可在Mac中輸入iOS設備通用的Emoji表情，其他系統可能需安装專門字體。
@@ -14,7 +14,7 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: ["中文", "英文"]
+    states: ['中文', '英文']
 
 engine:
   filters:
@@ -28,7 +28,7 @@ engine:
     - selector
     - navigator
     - express_editor
-#    - fluency_editor
+  #    - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -40,11 +40,11 @@ engine:
     - table_translator
 
 menu:
-  alternative_select_keys: "ABCDEFGHIJ"
+  alternative_select_keys: 'ABCDEFGHIJ'
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz;-1234567890"
-  delimiter: "|"
+  alphabet: 'abcdefghijklmnopqrstuvwxyz;-1234567890'
+  delimiter: '|'
   algebra:
     __include: element_bopomo_double:/algebra
 
@@ -64,16 +64,16 @@ translator:
 key_binder:
   import_preset: default
   bindings:
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: Return, send: space, when: has_menu}
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: Return, send: space, when: has_menu }
 
 punctuator:
   import_preset: default
 
 recognizer:
-#  import_preset: default
+  #  import_preset: default
   patterns:
     uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"

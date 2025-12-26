@@ -3,18 +3,17 @@
 # 《反查掛載專用 英翻中 設定頁》
 schema:
   schema_id: easy_en_lcomment
-  name: "提示碼_英翻中"
-  version: "202405"
+  name: '提示碼_英翻中'
+  version: '202405'
   author:
     - Onion
   description: |
     只在反查掛載作用
 
-
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [中文, 英文]
 
 engine:
   filters:
@@ -28,7 +27,7 @@ engine:
     - selector
     - navigator
     - express_editor
-#    - fluency_editor
+  #    - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -42,9 +41,9 @@ engine:
 
 speller:
   alphabet: 'zyxwvutsrqponmlkjihgfedcba'
-  delimiter: " "
+  delimiter: ' '
   algebra:
-    - xform/^(.).*(.)$/$1$2/  #縮小 prism 檔用
+    - xform/^(.).*(.)$/$1$2/ #縮小 prism 檔用
     # - erase/^.+$/
 
 translator:
@@ -65,4 +64,3 @@ key_binder:
 
 recognizer:
   import_preset: default
-

@@ -4,7 +4,7 @@
 schema:
   schema_id: ocm_mixin_fullshape
   name: ✹全形字母_新_蝦米✹
-  version: "202405"
+  version: '202405'
   author:
     - 『洋蔥』
   description: |
@@ -13,13 +13,13 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [中文, 英文]
   - name: full_shape
     reset: 0
-    states: [ 半形, 全形 ]
+    states: [半形, 全形]
 
-engine: 
-  processors: 
+engine:
+  processors:
     - ascii_composer
     - recognizer
     - key_binder
@@ -39,12 +39,12 @@ engine:
     - script_translator
 
 menu:
-  alternative_select_keys: "1234567890"
+  alternative_select_keys: '1234567890'
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz;'-"
-#  finals: ";'"
-  delimiter: "\""
+  #  finals: ";'"
+  delimiter: '"'
   algebra:
     - xform/^([-a-z]+)$/$1'/ #小寫改全碼
     - xform/^([a-z]+)"$/$1;/ #大寫轉換
@@ -57,86 +57,86 @@ translator:
   enable_completion: false
   enable_user_dict: true
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
   comment_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
 
 key_binder:
   import_preset: default
   bindings:
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: comma, send: comma, when: paging}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: period, send: period, when: paging}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: minus, send: minus, when: paging}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: equal, send: equal, when: paging}
-    - {accept: Return, send: space, when: has_menu}
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: comma, send: comma, when: paging }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: period, send: period, when: paging }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: minus, send: minus, when: paging }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: equal, send: equal, when: paging }
+    - { accept: Return, send: space, when: has_menu }
 
 punctuator:
-#  import_preset: default
+  #  import_preset: default
   full_shape:
-    " " : { commit: "　" }
-    "<" : { commit: "，" }
-    ">" : { commit: "。" }
-    "?" : [ ？, ／, ÷ ]
-    ":" : [ ：, ； ]
-    "'" : { pair: [ "‘", "’" ] }
-    "\"" : { pair: [ "“", "”" ] }
-    "\\" : [ 、, ＼ ]
-    "|" : [ ·, ｜, "§", "¦" ]
-    "`" : ｀
-    "~" : ～
-    "!" : { commit: ！ }
-    "@" : [ ＠, ☯ ]
-    "#" : [ ＃, ⌘ ]
-    "%" : [ ％, "°", "℃" ]
-    "$" : [ ￥, "$", "€", "£", "¥", "¢", "¤" ]
-    "^" : { commit: …… }
-    "&" : ＆
-    "*" : [ ＊, ·, ・, ×, ※, ❂ ]
-    "(" : （
-    ")" : ）
-    "_" : [ ——, － ]
-    "+" : ＋
-    "=" : ＝
-    "[" : [ 「, 【, 《, 〔, ［ ]
-    "]" : [ 」, 】, 》, 〕, ］ ]
-    "{" : [ 『, 〖, 〈, ｛ ]
-    "}" : [ 』, 〗, 〉, ｝ ]
+    ' ': { commit: '　' }
+    '<': { commit: '，' }
+    '>': { commit: '。' }
+    '?': [？, ／, ÷]
+    ':': [：, ；]
+    "'": { pair: ['‘', '’'] }
+    '"': { pair: ['“', '”'] }
+    "\\": [、, ＼]
+    '|': [·, ｜, '§', '¦']
+    '`': ｀
+    '~': ～
+    '!': { commit: ！ }
+    '@': [＠, ☯]
+    '#': [＃, ⌘]
+    '%': [％, '°', '℃']
+    '$': [￥, '$', '€', '£', '¥', '¢', '¤']
+    '^': { commit: …… }
+    '&': ＆
+    '*': [＊, ·, ・, ×, ※, ❂]
+    '(': （
+    ')': ）
+    '_': [——, －]
+    '+': ＋
+    '=': ＝
+    '[': [「, 【, 《, 〔, ［]
+    ']': [」, 】, 》, 〕, ］]
+    '{': [『, 〖, 〈, ｛]
+    '}': [』, 〗, 〉, ｝]
   half_shape:
-    ',' : { commit: "," }
-    '.' : { commit: "." }
-    '<' : { commit: "<" }
-    '>' : { commit: ">" }
-    '?' : { commit: "?" }
-    '/' : { commit: "/" }
-    ':' : { commit: ":" }
-#    ';' : [ ';' ]
-#    "'" : [ "'" ]
-    '"' : { commit: "\"" }
-    '\\' : { commit: "\\" }
-    '|' : { commit: "|" }
-    '`' : { commit: "`" }
-    '~' : { commit: '~' }
-    '!' : { commit: '!' }
-    '@' : { commit: '@' }
-    '#' : { commit: '#' }
-    '%' : { commit: '%' }
-    '$' : { commit: '$' }
-    '^' : { commit: '^' }
-    '&' : { commit: '&' }
-    '*' : { commit: '*' }
-    '(' : { commit: '(' }
-    ')' : { commit: ')' }
-    '-' : { commit: '-' }
-    '+' : { commit: '+' }
-    '=' : { commit: '=' }
-    '[' : { commit: '[' }
-    ']' : { commit: ']' }
-    '{' : { commit: '{' }
-    '}' : { commit: '}' }
+    ',': { commit: ',' }
+    '.': { commit: '.' }
+    '<': { commit: '<' }
+    '>': { commit: '>' }
+    '?': { commit: '?' }
+    '/': { commit: '/' }
+    ':': { commit: ':' }
+    #    ';' : [ ';' ]
+    #    "'" : [ "'" ]
+    '"': { commit: '"' }
+    '\\': { commit: "\\" }
+    '|': { commit: '|' }
+    '`': { commit: '`' }
+    '~': { commit: '~' }
+    '!': { commit: '!' }
+    '@': { commit: '@' }
+    '#': { commit: '#' }
+    '%': { commit: '%' }
+    '$': { commit: '$' }
+    '^': { commit: '^' }
+    '&': { commit: '&' }
+    '*': { commit: '*' }
+    '(': { commit: '(' }
+    ')': { commit: ')' }
+    '-': { commit: '-' }
+    '+': { commit: '+' }
+    '=': { commit: '=' }
+    '[': { commit: '[' }
+    ']': { commit: ']' }
+    '{': { commit: '{' }
+    '}': { commit: '}' }
 
 recognizer:
   import_preset: default

@@ -3,19 +3,18 @@
 
 schema:
   schema_id: onion-array30-wsymbols
-  name: "行列３０（洋蔥版）- W符號掛接"
-  version: "202405"
+  name: '行列３０（洋蔥版）- W符號掛接'
+  version: '202405'
   author:
     - 洋蔥
   description: |
     行列
   dependencies:
 
-
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 英文 ]
+    states: [中文, 英文]
 
 engine:
   processors:
@@ -31,7 +30,7 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor #一定要放在「affix_segmentor」前
-#    - affix_segmentor
+    #    - affix_segmentor
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -46,9 +45,9 @@ menu:
   page_size: 10
 
 speller:
-  alphabet: "w1234567890"
-  initials: "w"
-  finals: "1234567890"
+  alphabet: 'w1234567890'
+  initials: 'w'
+  finals: '1234567890'
   delimiter: "\\"
 
 translator:

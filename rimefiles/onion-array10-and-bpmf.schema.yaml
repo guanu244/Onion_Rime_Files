@@ -4,21 +4,18 @@
 __include: bopomo_onion.schema:/
 __patch:
 
-
 schema:
   schema_id: onion-array10-and-bpmf
-  name: "▦ 行列１０＆注音（洋蔥版）"
-  version: "202508"
+  name: '▦ 行列１０＆注音（洋蔥版）'
+  version: '202508'
   dependencies:
     - cangjie5
     - onion-array10
 
-
 switches/+:
   - name: simplify_comment
     # reset: 1
-    states: [ 編碼, 無編 ]
-
+    states: [編碼, 無編]
 
 engine:
   processors:
@@ -35,7 +32,7 @@ engine:
   segmentors:
     - ascii_segmentor
     - matcher
-    - abc_segmentor  # 一定要放在「affix_segmentor」前
+    - abc_segmentor # 一定要放在「affix_segmentor」前
     - affix_segmentor@shadow_top
     # - affix_segmentor@second_phrases
     - affix_segmentor@reverse2_lookup
@@ -55,62 +52,52 @@ engine:
     - reverse_lookup_filter@array10_reverse_lookup
     - lua_filter@comment_filter_plus
     - uniquifier
-    - single_char_filter  # 作者說明其作用是單字優先，文檔的說法有誤。  # 只針對「table_translator」作用，官方文件是放在「uniquifier」後。
-
+    - single_char_filter # 作者說明其作用是單字優先，文檔的說法有誤。  # 只針對「table_translator」作用，官方文件是放在「uniquifier」後。
 
 speller:
   delimiter: "|\\"
 
-
 translator:
   preedit_format:
-    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - 'xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|'
     - xform/\|/ /
-
 
 ##### 行列10影子翻譯器 #####（功用：轉給右邊數字鍵盤使用）
 shadow_top:
   __include: onion-array10.schema:/shadow_top
   __append:
-    suffix: " "
-
+    suffix: ' '
 
 ##### 行列10副翻譯器-輸出長詞用 #####
 # second_phrases:
 #   __include: onion-array10.schema:/second_phrases
 
-
 ##### 使用行列10反查注音碼 #####
 reverse3_lookup:
   __include: onion-array10.schema:/reverse3_lookup
   __append:
-    prefix: "=="
-    suffix: " "
-
+    prefix: '=='
+    suffix: ' '
 
 ##### 濾鏡：簡體轉換 #####
 zh_cn:
-  tips: none  # 不標註轉換前「字符」
-  tags: [ abc, shadow_top ]
-
+  tips: none # 不標註轉換前「字符」
+  tags: [abc, shadow_top]
 
 ##### 濾鏡：標註該字行列10編碼 #####
 array10_reverse_lookup:
   __include: onion-array10.schema:/array10_reverse_lookup
   __append:
-    tags: [ abc, shadow_top ]  #second_phrases, reverse2_lookup
-
+    tags: [abc, shadow_top] #second_phrases, reverse2_lookup
 
 ##### 濾鏡：標註該字注音 #####
 ## 用純注音方案中的濾鏡，非 array10 方案內的「bpmf_reverse_lookup」！
 bpm_reverse_lookup:
-  tags: [ reverse2_lookup, reverse3_lookup ]
-
+  tags: [reverse2_lookup, reverse3_lookup]
 
 ##### 濾鏡：comment 遮屏 #####
 comment_filter_plus:
-  tags: [ abc, shadow_top ]
-
+  tags: [abc, shadow_top]
 
 ##### 按鍵設定 #####
 key_binder:
@@ -118,57 +105,117 @@ key_binder:
   bindings:
     __include: bopomo_onion.schema:/key_binder/bindings
     __append:
-###  功能快捷鍵 ###
-## 下排舊的循環切換
-    # - { accept: Control+apostrophe, toggle: simplify_comment, when: always }
-## 上排切換(Mac)
-    - { accept: Control+Shift+6, toggle: simplify_comment, when: always }
-## 上排切換(Win)
-    - { accept: Control+Shift+asciicircum, toggle: simplify_comment, when: always }
-## 切換樣態
-    - { accept: Control+apostrophe, set_option: simplify_comment, when: always }
-## 初始樣態(Mac)
-    - { accept: Control+Shift+apostrophe, unset_option: simplify_comment, when: always }
-## 初始樣態(Win)
-    - { accept: Control+Shift+quotedbl, unset_option: simplify_comment, when: always }
-### 轉換小鍵盤（初始） ###
-    - {accept: KP_0, send_sequence: "{grave}{grave}{grave}{z}", when: always}
-    - {accept: KP_1, send_sequence: "{grave}{grave}{grave}{x}", when: always}
-    - {accept: KP_2, send_sequence: "{grave}{grave}{grave}{c}", when: always}
-    - {accept: KP_3, send_sequence: "{grave}{grave}{grave}{v}", when: always}
-    - {accept: KP_4, send_sequence: "{grave}{grave}{grave}{s}", when: always}
-    - {accept: KP_5, send_sequence: "{grave}{grave}{grave}{d}", when: always}
-    - {accept: KP_6, send_sequence: "{grave}{grave}{grave}{f}", when: always}
-    - {accept: KP_7, send_sequence: "{grave}{grave}{grave}{w}", when: always}
-    - {accept: KP_8, send_sequence: "{grave}{grave}{grave}{e}", when: always}
-    - {accept: KP_9, send_sequence: "{grave}{grave}{grave}{r}", when: always}
-    - {accept: KP_Decimal, send_sequence: "{grave}{grave}{grave}{b}", when: always}
-### 轉換小鍵盤（有開頭後） ###
-    - {accept: KP_0, send: z, when: composing}
-    - {accept: KP_1, send: x, when: composing}
-    - {accept: KP_2, send: c, when: composing}
-    - {accept: KP_3, send: v, when: composing}
-    - {accept: KP_4, send: s, when: composing}
-    - {accept: KP_5, send: d, when: composing}
-    - {accept: KP_6, send: f, when: composing}
-    - {accept: KP_7, send: w, when: composing}
-    - {accept: KP_8, send: e, when: composing}
-    - {accept: KP_9, send: r, when: composing}
-    - {accept: KP_Decimal, send: b, when: composing}
-## 以下不要設成：{ when: always }
-    - {accept: KP_Subtract, send: BackSpace, when: has_menu}
-    - {accept: KP_Divide, send: Page_Up, when: has_menu}
-    - {accept: KP_Multiply, send: Page_Down, when: composing}
-    - {accept: KP_Add, send: g , when: composing}
+      ###  功能快捷鍵 ###
+      ## 下排舊的循環切換
+      # - { accept: Control+apostrophe, toggle: simplify_comment, when: always }
+      ## 上排切換(Mac)
+      - { accept: Control+Shift+6, toggle: simplify_comment, when: always }
+      ## 上排切換(Win)
+      - {
+          accept: Control+Shift+asciicircum,
+          toggle: simplify_comment,
+          when: always,
+        }
+      ## 切換樣態
+      - {
+          accept: Control+apostrophe,
+          set_option: simplify_comment,
+          when: always,
+        }
+      ## 初始樣態(Mac)
+      - {
+          accept: Control+Shift+apostrophe,
+          unset_option: simplify_comment,
+          when: always,
+        }
+      ## 初始樣態(Win)
+      - {
+          accept: Control+Shift+quotedbl,
+          unset_option: simplify_comment,
+          when: always,
+        }
+      ### 轉換小鍵盤（初始） ###
+      - {
+          accept: KP_0,
+          send_sequence: '{grave}{grave}{grave}{z}',
+          when: always,
+        }
+      - {
+          accept: KP_1,
+          send_sequence: '{grave}{grave}{grave}{x}',
+          when: always,
+        }
+      - {
+          accept: KP_2,
+          send_sequence: '{grave}{grave}{grave}{c}',
+          when: always,
+        }
+      - {
+          accept: KP_3,
+          send_sequence: '{grave}{grave}{grave}{v}',
+          when: always,
+        }
+      - {
+          accept: KP_4,
+          send_sequence: '{grave}{grave}{grave}{s}',
+          when: always,
+        }
+      - {
+          accept: KP_5,
+          send_sequence: '{grave}{grave}{grave}{d}',
+          when: always,
+        }
+      - {
+          accept: KP_6,
+          send_sequence: '{grave}{grave}{grave}{f}',
+          when: always,
+        }
+      - {
+          accept: KP_7,
+          send_sequence: '{grave}{grave}{grave}{w}',
+          when: always,
+        }
+      - {
+          accept: KP_8,
+          send_sequence: '{grave}{grave}{grave}{e}',
+          when: always,
+        }
+      - {
+          accept: KP_9,
+          send_sequence: '{grave}{grave}{grave}{r}',
+          when: always,
+        }
+      - {
+          accept: KP_Decimal,
+          send_sequence: '{grave}{grave}{grave}{b}',
+          when: always,
+        }
+      ### 轉換小鍵盤（有開頭後） ###
+      - { accept: KP_0, send: z, when: composing }
+      - { accept: KP_1, send: x, when: composing }
+      - { accept: KP_2, send: c, when: composing }
+      - { accept: KP_3, send: v, when: composing }
+      - { accept: KP_4, send: s, when: composing }
+      - { accept: KP_5, send: d, when: composing }
+      - { accept: KP_6, send: f, when: composing }
+      - { accept: KP_7, send: w, when: composing }
+      - { accept: KP_8, send: e, when: composing }
+      - { accept: KP_9, send: r, when: composing }
+      - { accept: KP_Decimal, send: b, when: composing }
+      ## 以下不要設成：{ when: always }
+      - { accept: KP_Subtract, send: BackSpace, when: has_menu }
+      - { accept: KP_Divide, send: Page_Up, when: has_menu }
+      - { accept: KP_Multiply, send: Page_Down, when: composing }
+      - { accept: KP_Add, send: g, when: composing }
 ### END ###
-
 
 ##### 段落識別器 #####
 recognizer:
   patterns/+:
-    shadow_top: "```[zxcvsdfwerb0-9.]* ?$"  # [0-9.]使「變換 數/中」不會跳回注音。
+    shadow_top: '```[zxcvsdfwerb0-9.]* ?$' # [0-9.]使「變換 數/中」不會跳回注音。
     # shadow_top: "```[zxcvsdfwerb ]*$"  # 多一個空格！掛載在注音下用，但會跳回完整碼單字，故不用。
-    reverse3_lookup: "==[zxcvsdfwerb0-9.]* ?$"  # [0-9.]使「變換 數/中」不會跳回注音。
+    reverse3_lookup: '==[zxcvsdfwerb0-9.]* ?$' # [0-9.]使「變換 數/中」不會跳回注音。
+
 
 # recognizer:
 #   patterns:

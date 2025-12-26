@@ -4,7 +4,7 @@
 schema:
   schema_id: hangeul_hnc # 注意此ID與文件名裏 .schema.yaml 之前的部分相同
   name: ❃韓語HNC❃
-  version: "202405"
+  version: '202405'
   author:
     - 『洋蔥』
   description: |
@@ -12,20 +12,19 @@ schema:
   dependencies:
     - cangjie5
 
-
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ "韓文", "英文" ]
+    states: ['韓文', '英文']
   - name: full_shape
     reset: 0
-    states: [ "半形", "全形" ]
+    states: ['半形', '全形']
   - name: ascii_punct
     reset: 0
-    states: [ "。，", "．，" ]
+    states: ['。，', '．，']
   - name: kr_1m
     reset: 1
-    states: [ "展開", "單選" ]
+    states: ['展開', '單選']
 
 engine:
   filters:
@@ -39,7 +38,7 @@ engine:
     - selector
     - navigator
     - express_editor
-#    - fluency_editor
+  #    - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -53,20 +52,20 @@ engine:
     - script_translator
 
 kr_hnc_1m_filter:
-  tags: [ abc ]
+  tags: [abc]
 
 menu:
-  alternative_select_keys: "1234567890"
+  alternative_select_keys: '1234567890'
   page_size: 10
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz;/"
+  alphabet: 'abcdefghijklmnopqrstuvwxyz;/'
   # alphabet: "abcdefghijklmnopqrstuvwxyz" #
-  initials: "abcdefghijklmnoprstuwxyz"
-  delimiter: "'"  #";"
+  initials: 'abcdefghijklmnoprstuwxyz'
+  delimiter: "'" #";"
   algebra:
-    - derive/^\|$/ /  #
-##### 韓文HNC正碼轉寫開始 #####
+    - derive/^\|$/ / #
+    ##### 韓文HNC正碼轉寫開始 #####
     - derive/^l/r/
     - derive/(.+)l/$1r/
     - derive/^x/ng/
@@ -75,14 +74,13 @@ speller:
     - derive/y([aueo])/i$1/
     - derive/^p/f/
     - derive/p$/f/
-##### 韓文HNC正碼轉寫結束 #####
+    ##### 韓文HNC正碼轉寫結束 #####
     - abbrev/@//
     # - 'xlit|@|/|' #
     - 'xlit|/@|qq|'
     - derive|q|/| #
     - derive|;|v| #
     # - xform|;|v| #
-
 
 translator:
   dictionary: hangeul_hnc.extended
@@ -93,15 +91,15 @@ translator:
   disable_user_dict_for_patterns:
     - ^[a-z]+[/]?[/abcdefghijklmnopqrstuwxyz]$
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|'
     - xform/QQ/‹ʜᴊ›/
     - xform|[/][/]|‹ʜᴊ›|
     - xform/Q/‹ʜᴄᴊ›/
     - xform|[/]|‹ʜᴄᴊ›|
     - xform/V/‹漢›/
-    - xform/;/‹漢›/  #
+    - xform/;/‹漢›/ #
     # - xform/;/ /  #
-    - xform/'/ /  #
+    - xform/'/ / #
 
 # custom_phrase:
 #   dictionary: ""
@@ -120,13 +118,13 @@ reverse_lookup:
   enable_completion: false
   # sentence_over_completion: false
   enable_user_dict: true
-  prefix: "="
+  prefix: '='
   suffix: "'"
   tips: 〔漢字反查〕
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|'
   comment_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz;|ABCDEFGHIJKLMNOPQRSTUVWXYZV|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz;|ABCDEFGHIJKLMNOPQRSTUVWXYZV|'
     - xform/V/‹ᴠ›/
 
 punctuator:
@@ -134,117 +132,117 @@ punctuator:
   full_shape:
     # " " : { commit: "　" }
     #####################
-    "`" : { commit: "￦" }
-    "~" : { commit: "～" }
-    "!" : { commit: "！" }
-    "@" : { commit: "＠" }
-    "#" : { commit: "＃" }
-    "$" : { commit: "＄" }
-    "%" : { commit: "％" }
-    "^" : { commit: "＾" }
-    "&" : { commit: "＆" }
-    "*" : { commit: "＊" }
-    "(" : { commit: "（" }
-    ")" : { commit: "）" }
-    "-" : { commit: "－" }
-    "_" : { commit: "＿" }
-    "=" : [ "＝" ]
-    "+" : { commit: "＋" }
-    "[" : { commit: "［" }
-    "{" : { commit: "｛" }
-    "]" : { commit: "］" }
-    "}" : { commit: "｝" }
-    "\\" : { commit: "＼" }
-    "|" : { commit: "｜" }
-    ";" : { commit: "；" }
-    ":" : { commit: "：" }
-    "'" : { commit: "＇" }
-    "\"" : { commit: "＂" }
-    "," : { commit: "，" }
-    "<" : { commit: "＜" }
-    "." : { commit: "．" }
-    ">" : { commit: "＞" }
-    "/" : { commit: "／" }
-    "?" : { commit: "？" }
+    '`': { commit: '￦' }
+    '~': { commit: '～' }
+    '!': { commit: '！' }
+    '@': { commit: '＠' }
+    '#': { commit: '＃' }
+    '$': { commit: '＄' }
+    '%': { commit: '％' }
+    '^': { commit: '＾' }
+    '&': { commit: '＆' }
+    '*': { commit: '＊' }
+    '(': { commit: '（' }
+    ')': { commit: '）' }
+    '-': { commit: '－' }
+    '_': { commit: '＿' }
+    '=': ['＝']
+    '+': { commit: '＋' }
+    '[': { commit: '［' }
+    '{': { commit: '｛' }
+    ']': { commit: '］' }
+    '}': { commit: '｝' }
+    "\\": { commit: '＼' }
+    '|': { commit: '｜' }
+    ';': { commit: '；' }
+    ':': { commit: '：' }
+    "'": { commit: '＇' }
+    '"': { commit: '＂' }
+    ',': { commit: '，' }
+    '<': { commit: '＜' }
+    '.': { commit: '．' }
+    '>': { commit: '＞' }
+    '/': { commit: '／' }
+    '?': { commit: '？' }
     #####################
   half_shape:
-    " ": " "
+    ' ': ' '
     #####################
-    "`" : { commit: "₩" }
-    "~" : { commit: "~" }
-    "!" : { commit: "!" }
-    "@" : { commit: "@" }
-    "#" : { commit: "#" }
-    "$" : { commit: "$" }
-    "%" : { commit: "%" }
-    "^" : { commit: "^" }
-    "&" : { commit: "&" }
-    "*" : { commit: "*" }
-    "(" : { commit: "(" }
-    ")" : { commit: ")" }
-    "-" : { commit: "-" }
-    "_" : { commit: "_" }
-    "=" : [ "=" ]
-    "+" : { commit: "+" }
-    "[" : { commit: "[" }
-    "{" : { commit: "{" }
-    "]" : { commit: "]" }
-    "}" : { commit: "}" }
-    "\\" : { commit: "\\" }
-    "|" : { commit: "|" }
-    ";" : { commit: ";" }
-    ":" : { commit: ":" }
-    "'" : { commit: "'" }
-    "\"" : { commit: "\"" }
-    "," : { commit: "," }
-    "<" : { commit: "<" }
-    "." : { commit: "." }
-    ">" : { commit: ">" }
-    "/" : { commit: "/" }
-    "?" : { commit: "?" }
+    '`': { commit: '₩' }
+    '~': { commit: '~' }
+    '!': { commit: '!' }
+    '@': { commit: '@' }
+    '#': { commit: '#' }
+    '$': { commit: '$' }
+    '%': { commit: '%' }
+    '^': { commit: '^' }
+    '&': { commit: '&' }
+    '*': { commit: '*' }
+    '(': { commit: '(' }
+    ')': { commit: ')' }
+    '-': { commit: '-' }
+    '_': { commit: '_' }
+    '=': ['=']
+    '+': { commit: '+' }
+    '[': { commit: '[' }
+    '{': { commit: '{' }
+    ']': { commit: ']' }
+    '}': { commit: '}' }
+    "\\": { commit: "\\" }
+    '|': { commit: '|' }
+    ';': { commit: ';' }
+    ':': { commit: ':' }
+    "'": { commit: "'" }
+    '"': { commit: '"' }
+    ',': { commit: ',' }
+    '<': { commit: '<' }
+    '.': { commit: '.' }
+    '>': { commit: '>' }
+    '/': { commit: '/' }
+    '?': { commit: '?' }
     #####################
 
 key_binder:
   import_preset: default
   bindings:
-### 避 RIME 原設定鍵位衝突 ###
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: comma, send: comma, when: paging}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: period, send: period, when: paging}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: minus, send: minus, when: paging}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: equal, send: equal, when: paging}
-### 切分移位 ###
-    - {accept: Up, send: KP_Left, when: composing} #左移一個注音
-    - {accept: Up, send: Up, when: paging} #修正上條目出現的bug
-##
-    - {accept: Right, send: Shift+Right, when: composing} #右移一整個字
-    - {accept: Shift+Right, send: Right, when: composing} #右移一個注音
-    - {accept: Shift+Left, send: KP_Left, when: composing} #左移一個注音
-######################
-    - {accept: Left, send: Page_Up, when: paging}
-    - {accept: Right, send: Page_Down, when: paging}
-######################
-    - {accept: Tab, send: Shift+Left, when: paging} #Shift+Right #composing
-    - {accept: Shift+space, send: Page_Down, when: has_menu} #選字時可用「Shift」+「空白鍵」翻頁。 #send: Right #send: Down
-    - {accept: Shift+Tab, send: Page_Up, when: paging} #選字時可用「Shift」+「tab」翻頁。
-######################
-    - {accept: space, send: Return, when: paging}
+    ### 避 RIME 原設定鍵位衝突 ###
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: comma, send: comma, when: paging }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: period, send: period, when: paging }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: minus, send: minus, when: paging }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: equal, send: equal, when: paging }
+    ### 切分移位 ###
+    - { accept: Up, send: KP_Left, when: composing } #左移一個注音
+    - { accept: Up, send: Up, when: paging } #修正上條目出現的bug
+    ##
+    - { accept: Right, send: Shift+Right, when: composing } #右移一整個字
+    - { accept: Shift+Right, send: Right, when: composing } #右移一個注音
+    - { accept: Shift+Left, send: KP_Left, when: composing } #左移一個注音
+    ######################
+    - { accept: Left, send: Page_Up, when: paging }
+    - { accept: Right, send: Page_Down, when: paging }
+    ######################
+    - { accept: Tab, send: Shift+Left, when: paging } #Shift+Right #composing
+    - { accept: Shift+space, send: Page_Down, when: has_menu } #選字時可用「Shift」+「空白鍵」翻頁。 #send: Right #send: Down
+    - { accept: Shift+Tab, send: Page_Up, when: paging } #選字時可用「Shift」+「tab」翻頁。
+    ######################
+    - { accept: space, send: Return, when: paging }
     # - {accept: Return, send: space, when: composing}
     # - {accept: Return, send: Return, when: paging}
-######################
-## 上排切換(Mac)
-    - {accept: Control+Shift+5, toggle: kr_1m, when: always}
-## 上排切換(Win)
-    - {accept: Control+Shift+percent, toggle: kr_1m, when: always}
-## 切換樣態
-    - {accept: Control+semicolon, unset_option: kr_1m, when: always}
-## 初始樣態(Mac)
-    - {accept: Control+Shift+semicolon, set_option: kr_1m, when: always}
-## 初始樣態(Win)
-    - {accept: Control+Shift+colon, set_option: kr_1m, when: always}
+    ######################
+    ## 上排切換(Mac)
+    - { accept: Control+Shift+5, toggle: kr_1m, when: always }
+    ## 上排切換(Win)
+    - { accept: Control+Shift+percent, toggle: kr_1m, when: always }
+    ## 切換樣態
+    - { accept: Control+semicolon, unset_option: kr_1m, when: always }
+    ## 初始樣態(Mac)
+    - { accept: Control+Shift+semicolon, set_option: kr_1m, when: always }
+    ## 初始樣態(Win)
+    - { accept: Control+Shift+colon, set_option: kr_1m, when: always }
 ######################
 
 editor:
@@ -255,6 +253,6 @@ editor:
 
 recognizer:
   patterns:
-    email: "^[A-Za-z][-_.0-9A-Za-z]*@.*$"
-    url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$"
+    email: '^[A-Za-z][-_.0-9A-Za-z]*@.*$'
+    url: '^(www[.]|https?:|ftp[.:]|mailto:|file:).*$'
     reverse_lookup: "=[a-z]*'?$"

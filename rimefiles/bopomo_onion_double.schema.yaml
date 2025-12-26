@@ -3,8 +3,8 @@
 # 《洋蔥 雙拼注音 設定頁》
 schema:
   schema_id: bopomo_onion_double
-  name: "☆注音(洋蔥雙拼版)☆"
-  version: "202412"
+  name: '☆注音(洋蔥雙拼版)☆'
+  version: '202412'
   author:
     - 『洋蔥』
   description: |
@@ -17,28 +17,28 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: ["中文", "英文"]
+    states: ['中文', '英文']
   - name: full_shape
     reset: 0
-    states: ["半形", "全形"]
+    states: ['半形', '全形']
   - name: ascii_punct
     reset: 0
-    states: ["。，", "．，"]
+    states: ['。，', '．，']
   - name: simplification
     reset: 0
-    states: ["原體", "简体"]
+    states: ['原體', '简体']
   - name: only_cjk_filter
     reset: 1
-    states: ["完全", "CJK"]
-#   - options: [ utf8, big5, gbk]
-# #    reset: 0
-#     states:
-#       - UTF-8
-#       - BIG5
-#       - GBK
+    states: ['完全', 'CJK']
+  #   - options: [ utf8, big5, gbk]
+  # #    reset: 0
+  #     states:
+  #       - UTF-8
+  #       - BIG5
+  #       - GBK
   - name: emoji_segestion
     reset: 1
-    states: [ 🈚️, 🈶️ ]
+    states: [🈚️, 🈶️]
   - name: back_mark
     reset: 1
     # states: [ 無註, 註釋 ]
@@ -50,21 +50,21 @@ switches:
     # states: [ 無, 註 ]
   - name: unicode_comment
     reset: 0
-    states: [ '🄽', '🅄' ]
+    states: ['🄽', '🅄']
     # states: [ 'nil', 'Unicode(URL)' ]
   # - name: debug_comment
   #   reset: 0
-    # states: [ 'Ⓝ', 'Ⓓ' ]
-    # states: [ 'normal', 'Debug' ]
+  # states: [ 'Ⓝ', 'Ⓓ' ]
+  # states: [ 'normal', 'Debug' ]
   - name: return_mode
     reset: 0
-    states: [ "Return & Space", "Space" ]
+    states: ['Return & Space', 'Space']
 
 engine:
   filters:
     - lua_filter@punct_preedit_revise_filter
-#    - charset_filter@big5
-#    - charset_filter@gbk
+    #    - charset_filter@big5
+    #    - charset_filter@gbk
     - lua_filter@charset_cjk_filter_plus
     - simplifier@emoji_switch
     - simplifier@zh_cn
@@ -75,12 +75,12 @@ engine:
     - simplifier@punct_mark
     - reverse_lookup_filter@bpm_reverse_lookup
     - uniquifier
-    - lua_filter@comment_filter_unicode  # unicode 和 debug 分開，同時開啟無法記憶
+    - lua_filter@comment_filter_unicode # unicode 和 debug 分開，同時開啟無法記憶
     # - lua_filter@comment_filter_debug  # unicode 和 debug 分開，同時開啟無法記憶
     # - lua_filter@comment_filter_unicode_debug
   processors:
     # - lua_processor@lua_tran_kp  #使 lua 之 mf_translator 數字和計算機功能可用小鍵盤輸入。
-    - lua_processor@mix_kp_return  #合併 lua_tran_kp 和 return 上屏模式切換。
+    - lua_processor@mix_kp_return #合併 lua_tran_kp 和 return 上屏模式切換。
     - ascii_composer
     - recognizer
     - key_binder
@@ -89,7 +89,7 @@ engine:
     - selector
     - navigator
     - express_editor
-#    - fluency_editor
+  #    - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -110,35 +110,35 @@ engine:
     - lua_translator@instruction_dbpmf
 ################################# lua 引用 ####################################
 mf_translator:
-  prefix: "`"
+  prefix: '`'
 
 lua_custom_phrase:
-  user_dict: "bopomo_onion_double_phrase"
+  user_dict: 'bopomo_onion_double_phrase'
   # user_dict: "lua_custom_phrase"
 ################################### 濾鏡 ######################################
 zh_cn:
   opencc_config: tw2s.json
   tips: all
-  tags: [ abc ]
+  tags: [abc]
 
 charset_cjk_filter_plus:
-  tags: [ abc, reverse2_lookup ]
+  tags: [abc, reverse2_lookup]
 
 emoji_switch:
   opencc_config: emoji_t.json
   option_name: emoji_segestion
-  tags: [ abc ]
+  tags: [abc]
 #  tips: all #在emoji後面加註文字
 
 back_mark_series:
   opencc_config: back_mark_series.json
   option_name: back_mark
-  tags: [ emoji_series ]
+  tags: [emoji_series]
 
 back_mark:
   opencc_config: back_mark.json
   option_name: back_mark
-  tags: [ abc ]
+  tags: [abc]
 
 # back_mark_series:
 #   opencc_config: back_mark_series.json
@@ -168,14 +168,14 @@ punct_mark:
   opencc_config: punct_mark.json
   option_name: punct_mark
   show_in_comment: true
-  tags: [ punct ]
+  tags: [punct]
   tips: all
   comment_format:
     - erase/^.*〔.*〕.+$/
     - erase/^.+〔.*〕$/
 
 punct_preedit_revise_filter:
-  tags: [ punct ]
+  tags: [punct]
 
 # only_cjk_filter:
 #   tags: [ abc ]
@@ -186,18 +186,18 @@ punct_preedit_revise_filter:
 #   tags: [ abc ]
 ################################### 選單 ######################################
 menu:
-  alternative_select_keys: "1234567890"
+  alternative_select_keys: '1234567890'
   page_size: 6
 ################################### 拼寫 ######################################
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz;',./"
-  initials: "abcdefghijklmnopqrstuvwxyz"
+  initials: 'abcdefghijklmnopqrstuvwxyz'
   finals: ";',./"
   delimiter: " \\" #" `"
   algebra:
-##### 非正確注音（補空碼或慣用發音）轉寫 #####
+    ##### 非正確注音（補空碼或慣用發音）轉寫 #####
     - xform/[)(]//
-########################################
+    ########################################
     - xform/iu/iU/ #iou
     - xform/ui/uI/ #uei
     - xform/ong/ung/
@@ -221,11 +221,11 @@ speller:
     - xform/er/R/
     - xform/eh/E/
     - xform/([iv])e/$1E/
-##### 內嵌注音文 #####（注音雙拼單已有調出單注音方式，故這裡不再輸出單注音）
+    ##### 內嵌注音文 #####（注音雙拼單已有調出單注音方式，故這裡不再輸出單注音）
     - erase|^＊([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345])$|| #消除單個注音
     # - xform|^＊＊|| #開頭「＊＊」使注音文不被前面縮略，該正則回復。
-    - xform|^＊＊(.+)$|$1~|  #開頭「＊＊」轉成末尾「~」，使注音文不被後面簡化給縮略。
-###########################
+    - xform|^＊＊(.+)$|$1~| #開頭「＊＊」轉成末尾「~」，使注音文不被後面簡化給縮略。
+    ###########################
     - xform/^([bpmfdtnlgkhjqxZCSrzcs])v(\d~?)$/$1y$2/
     - xform/^v/y/
     - xform/^([bpmfdtnlgkhjqxZCSrzcs])iO/$1q/
@@ -245,17 +245,17 @@ speller:
     - xform/^([rZSCzsc])(\d~?)$/$1i$2/
     - xform/^([yui])(\d~?)$/$1e$2/
     - 'xlit|ORUAKMNGEIZSC|wrdjshfgkkwav|'
-###########################
+    ###########################
     - abbrev/^([a-z][a-z])\d$/$1/
     - abbrev/^([abcdfghijklmnopqrstuvwxyz])[a-z]\d$/$1/ #
     # - abbrev/^([yui])e\d$/$1/ #
     - abbrev/^([yui])e(\d)$/$1$2/
     - abbrev/^([abcdfghjklmnopqrstvwxz])[a-z](\d)$/$1$2/
-###########################
-    - xform|~||  #開頭「＊＊」轉成末尾「~」，使注音文不被前面簡化給縮略。此條回復。
+    ###########################
+    - xform|~|| #開頭「＊＊」轉成末尾「~」，使注音文不被前面簡化給縮略。此條回復。
     #之前聲調# - "xlit|12345|;/.,'|"
     - "xlit|12345|;/,'.|"
-##### 內嵌單注音 #####
+    ##### 內嵌單注音 #####
     - "xlit|１２３４５ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ|;/,'.abcdefghijklmnopqrstuvwxyz|"
 ################################### 主翻譯器 ###################################
 translator:
@@ -266,7 +266,7 @@ translator:
   enable_user_dict: true
   # initial_quality: 0
   preedit_format:
-###############
+    ###############
     - xform/\\/ /
     - xform|^([a-z ,./';]+)$|\U$1\E\t（$1）|
     - xform|([A-Z]),|$1，|
@@ -274,10 +274,10 @@ translator:
     - xform|([A-Z])[/]|$1／|
     - xform|([A-Z]);|$1；|
     - xform|([A-Z])'|$1＇|
-    - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ|"
-###############
+    - 'xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ|'
+    ###############
     - 'xform/([a-z])([a-z])/$1\U$2\E/'
-    - "xlit|ASDFGHJYUIEW|ㄚㄤㄡㄣㄥㄢㄞㄩㄨㄧㄜㄠ|"
+    - 'xlit|ASDFGHJYUIEW|ㄚㄤㄡㄣㄥㄢㄞㄩㄨㄧㄜㄠ|'
     - 'xform/([wraszcviuy])ㄧ/$1ㄭ/' #iuy
     - 'xform/([iuy])ㄜ/$1ㄭ/'
     - 'xform/Q/:ㄧㄠ/'
@@ -294,7 +294,7 @@ translator:
     - 'xform/B/:ㄨㄥ\|ㄩㄥ/'
     - 'xform/N/:ㄨㄢ\|ㄩㄢ/'
     - 'xform/M/:ㄧㄢ\|ㄨㄞ/'
-#######
+    #######
     - 'xform/(o):ㄧㄣ\|ㄦ/$1:ㄦ/'
     - 'xform/([bpmdtnljqx]):ㄧㄣ\|ㄦ/$1:ㄧㄣ/'
     - 'xform/([bmfiuo]):ㄛ\|ㄨㄛ/$1:ㄛ/'
@@ -317,20 +317,20 @@ translator:
     - 'xform/([jqx]):ㄨㄢ\|ㄩㄢ/$1:ㄩㄢ/'
     - 'xform/([bpmdtnljqx]):ㄧㄢ\|ㄨㄞ/$1:ㄧㄢ/'
     - 'xform/([gkhwva]):ㄧㄢ\|ㄨㄞ/$1:ㄨㄞ/'
-#######
-    - "xform|([（ ][abcdfghjklmnopqrstvwxz])([;/,'.])|$1⁎$2|"  #只有聲母加聲調時，其可能省略韻母之提示。
-    - "xform|([（ ][yui])([;/,'.])|$1₊$2|"  #只有ㄧㄨㄩ加聲調時，其可能省略韻母之提示。
+    #######
+    - "xform|([（ ][abcdfghjklmnopqrstvwxz])([;/,'.])|$1⁎$2|" #只有聲母加聲調時，其可能省略韻母之提示。
+    - "xform|([（ ][yui])([;/,'.])|$1₊$2|" #只有ㄧㄨㄩ加聲調時，其可能省略韻母之提示。
     #之前聲調# - "xlit|bpmfdtnlgkhjqxrzcsiuywvao;/.,'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄖㄗㄘㄙㄧㄨㄩㄓㄔㄕ◌ˉˊˇˋ˙|"
     - "xlit|bpmfdtnlgkhjqxrzcsiuywvao;/,'.|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄖㄗㄘㄙㄧㄨㄩㄓㄔㄕ◌ˉˊˇˋ˙|"
-##### 內嵌單注音修正 #####
+    ##### 內嵌單注音修正 #####
     - 'xform|e[^ ）]+([ ）])|注$1|'
     - 'xform|e([ ）])|空$1|'
     - 'xform|\t（空）$|\t《雙拼注音鍵位說明》|'
-#####
+    #####
     # - 'xform|e[^ ）]+([ ）])|㊟$1|'
     # - 'xform|e([ ）])|∅$1|'
     # - 'xform|\t（∅）$|\t《雙拼注音鍵位說明》|'
-############################
+    ############################
     # - "xlit|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．／；＇|abcdefghijklmnopqrstuvwxyz,./;'|"
     - "xlit|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．／；＇|ABCDEFGHIJKLMNOPQRSTUVWXYZ,./;'|"
     - 'xform/://'
@@ -346,10 +346,10 @@ emoji_series:
   enable_completion: false
   # sentence_over_completion: false
   enable_user_dict: true
-  prefix: ";"
+  prefix: ';'
   # suffix: "'"
-  tips: "《emoji集》▶"
-  closing_tips: "◀《emoji集》"
+  tips: '《emoji集》▶'
+  closing_tips: '◀《emoji集》'
   preedit_format:
     __include: element_bopomo_double:/preedit_format
 ################################ 以下為使用ooo反查注音 #############################
@@ -359,18 +359,18 @@ reverse2_lookup:
   # enable_charset_filter: false
   enable_completion: false
   enable_user_dict: true
-  prefix: "="
+  prefix: '='
   # suffix: "'"
-  tips: "《反查》▶"
-  closing_tips: "◀《反查》"
+  tips: '《反查》▶'
+  closing_tips: '◀《反查》'
   preedit_format:
-#    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
-    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+    #    - "xlit|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|'
     - xform/^/《反查》/
 #    - 'xform/`/  /'
 
 bpm_reverse_lookup:
-  tags: [ reverse2_lookup ]
+  tags: [reverse2_lookup]
   overwrite_comment: true
   dictionary: bopomo_onion_double.extended
   comment_format:
@@ -420,10 +420,10 @@ recognizer:
     # email: "^[a-z][-_.0-9a-z]*@.*$"
     punct: ";;$|[[][[]?'?$|[]][]]?'?$|[[][]]$|[[][[][]][]]$|[[]'[]]'$|[[][[]'[]][]]'$|///?$|===?$|=``?$|=''?$|=''?=''?$|=[][][][]?$|=[][][][]?=[][][][]?$|=[-,./;][-,./;]?$|=,,=[.][.]$|=[0-9]$|=9=0$|==[].,90'[]+$"
     # punct: ";;$|[[][[]?'?$|[]][]]?'?$|[[][]]$|[[][[][]][]]$|[[]'[]]'$|[[][[]'[]][]]'$|///?$|===?$|=``?$|=''?$|=''?=''?$|=[][][][]?$|=[][][][]?=[][][][]?$|=[-,./;][-,./;]?$|=,,=[.][.]$|=[0-9]$|=9=0$|==[].,90'[]+$|^e[a-z,./;'][a-z]?[,./;']?$"
-    emoji_series: "^;[a-z]*$|^;;[-0-9a-z]$|^;[0-9]$|^;[0-9]-[0-9]?$"
-    reverse2_lookup: "=[a-z]*$"
+    emoji_series: '^;[a-z]*$|^;;[-0-9a-z]$|^;[0-9]$|^;[0-9]-[0-9]?$'
+    reverse2_lookup: '=[a-z]*$'
     # lua: "^[a-z][-_.0-9a-z]*@.*$|^(https?:|ftp:|mailto:|file:).*$|(?<![=`])`[a-z]*$|(?<![=`])`[;/'][a-z.,/'-]*$|(?<![=`])`[rq0-9.-][asrvxqwymd0-9.,/()^*+-]*$|(?<![=`])`[xucoi][0-9a-f]+$"
-    email_url_translator: "^[a-z][-_.0-9a-z]*@.*$|^(https?:|ftp:|mailto:|file:).*$"
+    email_url_translator: '^[a-z][-_.0-9a-z]*@.*$|^(https?:|ftp:|mailto:|file:).*$'
     mf_translator: "(?<![=`])`[a-z,]*$|(?<![=`])`[;/'][a-z.,/'-]*$|(?<![=`])`[rq0-9.-][asrvxqwymd0-9.,/()^*+-]*$|(?<![=`])`[xucoi][0-9a-f]+$"
 
 # __patch:

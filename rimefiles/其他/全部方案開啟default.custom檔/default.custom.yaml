@@ -1,12 +1,12 @@
 # default.custom.yaml
-# save it to: 
+# save it to:
 #   ~/.config/ibus/rime  (linux)
 #   ~/Library/Rime       (macos)
 #   %APPDATA%\Rime       (windows)
 
 patch:
   schema_list:
-######## 洋蔥全部方案（除形碼方案關閉） ########
+    ######## 洋蔥全部方案（除形碼方案關閉） ########
     - schema: bo_mixin4
     - schema: bo_mixin1
     - schema: bo_mixin2
@@ -22,12 +22,12 @@ patch:
     - schema: onion-array10-and-bpmf
     # - schema: ocm_mixin
     # - schema: dif1
-###########################
+    ###########################
     - schema: cangjie5
     - schema: Mount_bopomo
     # - schema: Mount_ocm
     # - schema: Mount_ocm_encoder
-###########################
+    ###########################
     - schema: hangeul
     - schema: hangeul_hnc
     - schema: jpnin1
@@ -49,14 +49,14 @@ patch:
     - schema: easy_en_lower
     - schema: easy_en_upper
     - schema: easy_en_lcomment
-###########################
+    ###########################
     - schema: symbols_bpmf
     - schema: symbols_bpmf_double
     # - schema: symbols_ocm
-###########################
+    ###########################
     - schema: onion-array30-wsymbols
     # - schema: punct_ovff
-###############################
+  ###############################
 
   switcher/fix_schema_list_order: true #固定方案選單順序
   switcher/hotkeys:
@@ -102,7 +102,11 @@ patch:
     - { when: always, accept: Control+Shift+numbersign, toggle: full_shape }
     - { when: always, accept: Control+Shift+dollar, toggle: ascii_punct }
     - { when: always, accept: Control+Shift+percent, toggle: simplification }
-    - { when: always, accept: Control+Shift+asciicircum, toggle: extended_charset }
+    - {
+        when: always,
+        accept: Control+Shift+asciicircum,
+        toggle: extended_charset,
+      }
     # 新增下排功能快捷鍵
     - { when: always, accept: Shift+space, toggle: ascii_mode }
     # - { when: always, accept: Control+comma, toggle: ascii_mode }
@@ -117,24 +121,36 @@ patch:
     # 初始樣態(Mac)
     - { accept: Control+Shift+comma, unset_option: ascii_mode, when: always }
     - { accept: Control+Shift+period, unset_option: full_shape, when: always }
-    - { accept: Control+Shift+semicolon, unset_option: simplification, when: always }
+    - {
+        accept: Control+Shift+semicolon,
+        unset_option: simplification,
+        when: always,
+      }
     - { accept: Control+Shift+slash, unset_option: ascii_punct, when: always }
     # 初始樣態(Win)
     - { accept: Control+Shift+less, unset_option: ascii_mode, when: always }
     - { accept: Control+Shift+greater, unset_option: full_shape, when: always }
-    - { accept: Control+Shift+colon, unset_option: simplification, when: always }
-    - { accept: Control+Shift+question, unset_option: ascii_punct, when: always }
+    - {
+        accept: Control+Shift+colon,
+        unset_option: simplification,
+        when: always,
+      }
+    - {
+        accept: Control+Shift+question,
+        unset_option: ascii_punct,
+        when: always,
+      }
     # 只限直排專用：左右鍵翻頁（ Testing！ ）
     - { accept: Left, send: Page_Up, when: paging } #直式選單用 #has_menu
     - { accept: Right, send: Page_Down, when: paging } #直式選單用 #has_menu
     - { accept: KP_Enter, send: Return, when: always } #使小鍵盤Enter可選擇
 
-#  ascii_composer:
-#    good_old_caps_lock: false
+  #  ascii_composer:
+  #    good_old_caps_lock: false
   ascii_composer/switch_key:
     Shift_L: noop
     Shift_R: noop
-    Caps_Lock: commit_text  #clear  #「commit_text」「clear」兩者皆可，但不能沒有，否則「大寫caps_lock」標點可能會是中文全形！
+    Caps_Lock: commit_text #clear  #「commit_text」「clear」兩者皆可，但不能沒有，否則「大寫caps_lock」標點可能會是中文全形！
 #    Eisu_toggle: clear
 #    Control_L: noop
 #    Control_R: noop

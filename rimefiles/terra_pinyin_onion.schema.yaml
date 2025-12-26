@@ -3,8 +3,8 @@
 # 《地球拼音 洋蔥mixin版 設定頁》
 schema:
   schema_id: terra_pinyin_onion
-  name: "★地球拼音(洋蔥mix-in版)★"
-  version: "202405"
+  name: '★地球拼音(洋蔥mix-in版)★'
+  version: '202405'
   author:
     - 佛振 <chen.sst@gmail.com>
     - 『洋蔥』
@@ -18,19 +18,19 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中文, 西文 ]
+    states: [中文, 西文]
   - name: full_shape
     reset: 0
-    states: [ 半角, 全角 ]
+    states: [半角, 全角]
   - name: ascii_punct
     reset: 0
-    states: [ 。，, ．， ]
+    states: [。，, ．，]
   - name: simplification
     reset: 0
-    states: [ 漢字, 汉字 ]
+    states: [漢字, 汉字]
   - name: back_mark
     reset: 0
-    states: [ 無註, 註釋 ]
+    states: [無註, 註釋]
 
 engine:
   processors:
@@ -62,13 +62,13 @@ engine:
 zh_cn:
   opencc_config: tw2s.json
   tips: all
-  tags: [ abc ]
+  tags: [abc]
 
 back_mark:
   opencc_config: back_mark_ocm.json
   option_name: back_mark
   show_in_comment: true
-  tags: [ abc ]
+  tags: [abc]
   tips: char
   comment_format:
     - xform/^/  /
@@ -79,13 +79,13 @@ menu:
 
 speller:
   alphabet: "zyxwvutsrqponmlkjihgfedcba-;,./'"
-  initials: "zyxwvutsrqponmlkjihgfedcba-"
+  initials: 'zyxwvutsrqponmlkjihgfedcba-'
   # finals: ";,./'" #不能開啟，否則組合變音無法打出
-  delimiter: " "
+  delimiter: ' '
   algebra:
-##### 非正確注音（補空碼或慣用發音）轉寫 #####
+    ##### 非正確注音（補空碼或慣用發音）轉寫 #####
     - xform/[)(]//
-##### 韓文HNC轉寫開始 #####
+    ##### 韓文HNC轉寫開始 #####
     - derive|^l([a-z]+)([/][/]?!?)$|r$1$2|
     - derive|^([a-z]+)l([a-z]*)([/][/]?!?)$|$1r$2$3|
     - derive|^x([a-z]+)([/][/]?!?)$|ng$1$2|
@@ -94,9 +94,9 @@ speller:
     - derive|^([a-z]*)y([aueo])([a-z]*)([/][/]?!?)$|$1i$2$3$4|
     - derive|^p([a-z]*)([/][/]?!?)$|f$1$2|
     - derive|^([a-z]+)p([/][/]?!?)$|$1f$2|
-##### 韓文HNC轉寫結束 #####
-##### 日語 #####
-## 符號
+    ##### 韓文HNC轉寫結束 #####
+    ##### 日語 #####
+    ## 符號
     - derive|^([eaovsb]v),$|$1\.|
     - derive|^(eev),$|$1\.|
     - derive|^ev([,.])$|-$1|
@@ -109,7 +109,7 @@ speller:
     - derive|^dou([.])$|onazi$1|
     - derive|^dou([.])$|odoriji$1|
     - derive|^dou([.])$|odorizi$1|
-## 小字
+    ## 小字
     - derive/^xtu([,.])$/ltu$1/
     - derive/^xtu([,.])$/xtsu$1/
     - derive/^xtu([,.])$/ltsu$1/
@@ -119,7 +119,7 @@ speller:
     - derive/^xke([.])$/ke$1/
     - derive/^xka([,.])$/lka$1/
     - derive/^xka([.])$/ka$1/
-## 促音+拗音
+    ## 促音+拗音
     - derive/^ssh([auo][,.])$/ssy$1/
     - derive/^cch([auo][,.])$/ccy$1/
     - derive/^cch([auo][,.])$/tty$1/
@@ -127,13 +127,13 @@ speller:
     - derive/^jj([auo][,.])$/jjy$1/ #っじゃ #原字典沒有
     - derive/^ddy([auo][,.])$/zzy$1/ #っぢゃ
     - derive/^ddy([auo][,.])$/jj$1/ #っぢゃ
-## 促音
+    ## 促音
     - derive/^cchi([,.])$/tti$1/
     - derive/^sshi([,.])$/ssi$1/
     - derive/^ffu([,.])$/hhu$1/
     - derive/^ttsu([,.])$/ttu$1/
     - derive/^jji([,.])$/zzi$1/
-## 拗音
+    ## 拗音
     - derive/^sh([auo][,.])$/sy$1/
     - derive/^ch([auo][,.])$/cy$1/
     - derive/^ch([auo][,.])$/ty$1/
@@ -141,16 +141,16 @@ speller:
     - derive/^j([auo][,.])$/zy$1/
     - derive/^dy([auo][,.])$/j$1/
     - derive/^dy([auo][,.])$/zy$1/
-## 一般
+    ## 一般
     - derive/^shi([,.])$/si$1/
     - derive/^chi([,.])$/ti$1/
     - derive/^tsu([,.])$/tu$1/
     - derive/^fu([,.])$/hu$1/
     - derive/^ji([,.])$/zi$1/
     # - derive/^u([,.])$/wu$1/  #少用精簡
-## 特殊
+    ## 特殊
     - xform/^dvyu([,.])$/dyu$1/ # デュ #特殊片假名被其他正則不轉寫。
-##### 其他 #####
+    ##### 其他 #####
     # - "xlit|/',.-!;|ABCDEFG|"
     - xform/^([a-z]+)''$/$1;/ #拉丁-大寫
     - xform/^;;([a-z]+)(')$/$1$2$2/ #拉丁-組合變音標記
@@ -186,12 +186,12 @@ translator:
     - xform|⁵|⁽⁵ꞏ⁾|
 
 top_reverse_lookup:
-  tags: [ abc ]
+  tags: [abc]
   overwrite_comment: false
   dictionary: terra_pinyin_onion.extended
   comment_format:
-##### 韓文HNC轉寫開始 #####
-    - "xlit|/!|SV|"
+    ##### 韓文HNC轉寫開始 #####
+    - 'xlit|/!|SV|'
     - xform/(^| )l([a-z]+)(SS?V?)/$1l$2$3 r$2$3/
     - xform/(^| )([a-z]+)l([a-z]*)(SS?V?)/$1$2l$3$4 $2r$3$4/
     - xform/(^| )x([a-z]+)(SS?V?)/$1x$2$3 ng$2$3/
@@ -200,10 +200,10 @@ top_reverse_lookup:
     - xform/(^| )([a-z]*)y([aueo])([a-z]*)(SS?V?)/$1$2y$3$4$5 $2i$3$4$5/
     - xform/(^| )p([a-z]*)(SS?V?)/$1p$2 f$2/
     - xform/(^| )([a-z]+)p(SS?V?)/$1$2p$3 $2f$3/
-    - "xlit|SV|/!|"
-##### 韓文HNC轉寫結束 #####
-##### 日語 #####
-## 符號
+    - 'xlit|SV|/!|'
+    ##### 韓文HNC轉寫結束 #####
+    ##### 日語 #####
+    ## 符號
     - xform/(^| )([eaovsb]v)(,)(?!,)/$1$2$3 $2\./
     - xform/(^| )(eev)(,)/$1$2$3 $2\./
     - xform/(^| )(ev)(,)/$1-$3 -\. $2$3/
@@ -211,38 +211,38 @@ top_reverse_lookup:
     - xform/(^| )(xx)(,)/$1 shime, shime\. sime, sime\. $2$3 $2\./
     - xform/(^| )(noma)([.])/$1dou$3 $2$3/
     - xform/(^| )(dou)([.])/$1$2$3 odoriji$3 odorizi$3 onaji$3 onazi$3/
-## 小字
+    ## 小字
     - xform/(^| )(xtu)([,.])/$1ltu$3 ltsu$3 xtsu$3 $2$3/
     - xform/(^| )x([aeiou])([,.])/$1l$2$3 x$2$3/
     - xform/(^| )x(y[auo]|wa)([,.])/$1l$2$3 x$2$3/
     - xform/(^| )x(k[ea])([,.])/$1l$2$3 x$2$3/
     - xform/(^| )l(k[ea])([.])/$1$2$3 l$2$3/
-## 促音+拗音
+    ## 促音+拗音
     - xform/(^| )ssh([auo])([,.])/$1ssh$2$3 ssy$2$3/
     - xform/(^| )cch([auo])([,.])/$1cch$2$3 ccy$2$3 tty$2$3/
     - xform/(^| )jj([auo])([,.])/$1jj$2$3 jjy$2$3 zzy$2$3/ #っじゃ
     - xform/(^| )ddy([auo])([,.])/$1ddy$2$3 jj$2$3 zzy$2$3/ #っぢゃ
-## 促音
+    ## 促音
     - xform/(^| )(cchi)([,.])/$1$2$3 tti$3/
     - xform/(^| )(sshi)([,.])/$1$2$3 ssi$3/
     - xform/(^| )(ffu)([,.])/$1$2$3 hhu$3/
     - xform/(^| )(ttsu)([,.])/$1ttu$3 $2$3/
     - xform/(^| )(jji)([,.])/$1$2$3 zzi$3/
-## 拗音
+    ## 拗音
     - xform/(^| )sh([auo])([,.])/$1sh$2$3 sy$2$3/
     - xform/(^| )ch([auo])([,.])/$1ch$2$3 cy$2$3 ty$2$3/
     - xform/(^| )j([auo])([,.])/$1j$2$3 jy$2$3 zy$2$3/
     - xform/(^| )dy([auo])([,.])/$1dy$2$3 j$2$3 zy$2$3/
-## 一般
+    ## 一般
     - xform/(^| )(shi)([,.])/$1$2$3 si$3/
     - xform/(^| )(chi)([,.])/$1$2$3 ti$3/
     - xform/(^| )(tsu)([,.])/$1$2$3 tu$3/
     - xform/(^| )(fu)([,.])/$1$2$3 hu$3/
     - xform/(^| )(ji)([,.])/$1$2$3 zi$3/
     - xform/(^| )(u)([,.])/$1$2$3 wu$3/
-## 特殊
+    ## 特殊
     - xform/(^| )dvyu([,.])/$1dyu$2/
-##### 其他 #####
+    ##### 其他 #####
     - "xlit|';/!,.|ABCDEF|"
     - xform/^/  /
     - xform/BB([a-z]+)A/   $1BB/
@@ -271,7 +271,7 @@ top_reverse_lookup:
     - xform/(FF)`日-片@/$1`日-組@/ #日語濁点(組合)
     - xform/(F)`日-片@/$1`日-濁@/ #日語濁点
     - "xlit|ABCDEF`@|';/!,.〔〕|"
-###################################
+    ###################################
     - xform/([aeiou])(ng?|r)([1234])/$1$3$2/
     - xform/([aeo])([iuo])([1234])/$1$3$2/
     - xform/a1/ā/
@@ -326,11 +326,11 @@ reverse_lookup:
   enable_completion: false
   # sentence_over_completion: false
   enable_user_dict: true
-  prefix: "`"
+  prefix: '`'
   suffix: "'"
   tips: 〔倉頡反查〕
   preedit_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+    - 'xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|'
     - 'xform/\\/ /'
   comment_format:
     - xform/([aeiou])(ng?|r)([1234])/$1$3$2/
@@ -373,143 +373,151 @@ reverse_lookup:
 punctuator:
   # import_preset: default
   full_shape:
-    " ": {commit: "　"}
-    "!": {commit: "！"}
-    "\"": {pair: ["“", "”"]}
-    "#": ["＃", "⌘"]
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": ["％", "°", "℃"]
-    "&": "＆"
-    "'": {pair: ["‘", "’"]}
-    "(": "（"
-    ")": "）"
-    "*": ["＊", "·", "・", "×", "※", "❂"]
-    "+": "＋"
-    ",": {commit: "，"}
-    "-": "－"
-    .: {commit: "。"}
-    "/": ["／", "÷"]
-    ":": {commit: "："}
-    ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
-    "=": "＝"
-    ">": ["》", "〉", "»", "›"]
-    "?": {commit: "？"}
-    "@": ["＠", "☯"]
-    "[": ["「", "【", "〔", "［"]
-    "\\": ["、", "＼"]
-    "]": ["」", "】", "〕", "］"]
-    "^": {commit: "……"}
-    _: "——"
-    "`": "｀"
-    "{": ["『", "〖", "｛"]
-    "|": ["·", "｜", "§", "¦"]
-    "}": ["』", "〗", "｝"]
-    "~": "～"
+    ' ': { commit: '　' }
+    '!': { commit: '！' }
+    '"': { pair: ['“', '”'] }
+    '#': ['＃', '⌘']
+    '$': ['￥', '$', '€', '£', '¥', '¢', '¤']
+    '%': ['％', '°', '℃']
+    '&': '＆'
+    "'": { pair: ['‘', '’'] }
+    '(': '（'
+    ')': '）'
+    '*': ['＊', '·', '・', '×', '※', '❂']
+    '+': '＋'
+    ',': { commit: '，' }
+    '-': '－'
+    .: { commit: '。' }
+    '/': ['／', '÷']
+    ':': { commit: '：' }
+    ';': { commit: '；' }
+    '<': ['《', '〈', '«', '‹']
+    '=': '＝'
+    '>': ['》', '〉', '»', '›']
+    '?': { commit: '？' }
+    '@': ['＠', '☯']
+    '[': ['「', '【', '〔', '［']
+    "\\": ['、', '＼']
+    ']': ['」', '】', '〕', '］']
+    '^': { commit: '……' }
+    _: '——'
+    '`': '｀'
+    '{': ['『', '〖', '｛']
+    '|': ['·', '｜', '§', '¦']
+    '}': ['』', '〗', '｝']
+    '~': '～'
   half_shape:
-    "!": {commit: "！"}
-    "\"": {pair: ["“", "”"]}
-    "#": "#"
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": ["%", "％", "°", "℃"]
-    "&": "&"
-    "'": {pair: ["‘", "’"]}
-    "(": "（"
-    ")": "）"
-    "*": ["*", "＊", "·", "・", "×", "※", "❂"]
-    "+": "+"
-    ",": {commit: "，"}
-#    "-": "-"
-    .: {commit: "。"}
-    "/": ["、", "/", "／", "÷"]
-    ":": {commit: "："}
-    ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
-    "=": "="
-    ">": ["》", "〉", "»", "›"]
-    "?": {commit: "？"}
-    "@": "@"
-    "[": ["「", "【", "〔", "［"]
-    "\\": ["、", "\\", "＼"]
-    "]": ["」", "】", "〕", "］"]
-    "^": {commit: "……"}
-    _: "——"
-    "`": "`"
-    "{": ["『", "〖", "｛"]
-    "|": ["·", "|", "｜", "§", "¦"]
-    "}": ["』", "〗", "｝"]
-    "~": ["~", "～"]
+    '!': { commit: '！' }
+    '"': { pair: ['“', '”'] }
+    '#': '#'
+    '$': ['￥', '$', '€', '£', '¥', '¢', '¤']
+    '%': ['%', '％', '°', '℃']
+    '&': '&'
+    "'": { pair: ['‘', '’'] }
+    '(': '（'
+    ')': '）'
+    '*': ['*', '＊', '·', '・', '×', '※', '❂']
+    '+': '+'
+    ',': { commit: '，' }
+    #    "-": "-"
+    .: { commit: '。' }
+    '/': ['、', '/', '／', '÷']
+    ':': { commit: '：' }
+    ';': { commit: '；' }
+    '<': ['《', '〈', '«', '‹']
+    '=': '='
+    '>': ['》', '〉', '»', '›']
+    '?': { commit: '？' }
+    '@': '@'
+    '[': ['「', '【', '〔', '［']
+    "\\": ['、', "\\", '＼']
+    ']': ['」', '】', '〕', '］']
+    '^': { commit: '……' }
+    _: '——'
+    '`': '`'
+    '{': ['『', '〖', '｛']
+    '|': ['·', '|', '｜', '§', '¦']
+    '}': ['』', '〗', '｝']
+    '~': ['~', '～']
 
 key_binder:
   import_preset: default
   bindings:
-### 避 RIME 原設定鍵位衝突 ###
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: comma, send: comma, when: paging}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: period, send: period, when: paging}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: minus, send: minus, when: paging}
-    - {accept: equal, send: equal, when: has_menu}
-    - {accept: equal, send: equal, when: paging}
-#    - {accept: minus, send: minus, when: has_menu}  # tone 1
-#    - {accept: minus, send: Page_Up,  when: paging}
-### 切分移位 ###
-    - {accept: Up, send: KP_Left, when: composing} #左移一個注音
-    - {accept: Up, send: Up, when: paging} #修正上條目出現的bug
-##
-#    - {accept: Right, send: Shift+Right, when: composing} #右移一整個字
-#    - {accept: Shift+Right, send: Right, when: composing} #右移一個注音
-    - {accept: Shift+Left, send: KP_Left, when: composing} #左移一個注音
-#關#    - {accept: Shift+space, send: Shift+Right, when: composing} #首節
-#    - {accept: Shift+space, send: KP_Left, when: composing} #左移一個注音
-#    - {accept: Left, send: KP_Left, when: composing} #左移一個注音
-##
-#    - {accept: Shift+Tab, send: Right, when: composing} #右移一個注音
-#    - {accept: Tab, send: KP_Left, when: composing} #左移一個注音
-### 選字翻頁 ###
-    - {accept: Left, send: Page_Up, when: paging} #直式選單用
-    - {accept: Right, send: Page_Down, when: paging} #直式選單用
-#    - {accept: Up, send: Page_Up, when: paging} #橫式選單用
-#    - {accept: Down, send: Page_Down, when: paging} #橫式選單用
-#    - {accept: Left, send: Left, when: has_menu} #橫式選單用 #send: Shift+Up
-#    - {accept: Right, send: Right, when: has_menu} #橫式選單用 #send: Shift+Down
-    - {accept: Shift+Down, send: Page_Down, when: has_menu} #選字時「Shift」+「下」翻頁。
-    - {accept: Shift+Up, send: Page_Up, when: paging} #選字時「Shift」+「上」翻頁。
-#關#    - {accept: Tab, send: Page_Down, when: has_menu} #「tab」翻頁。
-    - {accept: Shift+Tab, send: Page_Up, when: paging} #選字時「Shift」+「tab」翻頁。
-    - {accept: Shift+space, send: Page_Down, when: has_menu} #選字時「Shift」+「空白鍵」翻頁。 #send: Right #send: Down
-##回復到 composing 狀態：
-#關#    - {accept: Shift+space, send: Shift+Left, when: paging} #於選單列選字時，回復到輸入列（避免有時回復不了，故增加）。
-    - {accept: Tab, send: Shift+Left, when: paging} #於選單列選字時，回復到輸入列（避免有時回復不了，故增加）。
-### 空白鍵 ###
-#    - {accept: space, send: Return, when: paging} #方向鍵選字時，space直接上屏（避免被一聲空格影響）
-#    - {accept: space, send: Page_Down, when: paging} #方向鍵選字時，space翻頁（上條遮屏需開啟，否則「=」+「符號」會誤按）
-##    - {accept: space, send: Down, when: has_menu}
-##    - {accept: space, send: Down, when: paging}
-##    - {accept: space, send: space, when: composing}
-#    - {accept: space, send: Escape, when: composing} #空碼時，按空格清除
-#    - {accept: space, send: space, when: has_menu} #非空碼時，空白還是空白
-### 刪除鍵 ###
-#    - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
-#    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
-#    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
-#    - {accept: backslash, send: Shift+BackSpace, when: has_menu} #「\」鍵位刪除整組拼音字符（一個字）。
-#    - {accept: backslash, send: Shift+Return, when: has_menu} #「\」鍵位上屏英文。
-### 功能快捷鍵 ###
-## 上排切換(Mac)
-    - {accept: Control+Shift+6, toggle: back_mark, when: always}
-## 上排切換(Win)
-    - {accept: Control+Shift+asciicircum, toggle: back_mark, when: always}
-#    - {accept: Control+Shift+6, toggle: character_range_bhjm, when: always}
-#    - {accept: Control+Shift+7, toggle: emoji_segestion, when: always}
-## 切換樣態
-    - {accept: Control+bracketright, set_option: back_mark, when: always } #「國際音標和符號」提示碼開關
+    ### 避 RIME 原設定鍵位衝突 ###
+    - { accept: comma, send: comma, when: has_menu }
+    - { accept: comma, send: comma, when: paging }
+    - { accept: period, send: period, when: has_menu }
+    - { accept: period, send: period, when: paging }
+    - { accept: minus, send: minus, when: has_menu }
+    - { accept: minus, send: minus, when: paging }
+    - { accept: equal, send: equal, when: has_menu }
+    - { accept: equal, send: equal, when: paging }
+    #    - {accept: minus, send: minus, when: has_menu}  # tone 1
+    #    - {accept: minus, send: Page_Up,  when: paging}
+    ### 切分移位 ###
+    - { accept: Up, send: KP_Left, when: composing } #左移一個注音
+    - { accept: Up, send: Up, when: paging } #修正上條目出現的bug
+    ##
+    #    - {accept: Right, send: Shift+Right, when: composing} #右移一整個字
+    #    - {accept: Shift+Right, send: Right, when: composing} #右移一個注音
+    - { accept: Shift+Left, send: KP_Left, when: composing } #左移一個注音
+    #關#    - {accept: Shift+space, send: Shift+Right, when: composing} #首節
+    #    - {accept: Shift+space, send: KP_Left, when: composing} #左移一個注音
+    #    - {accept: Left, send: KP_Left, when: composing} #左移一個注音
+    ##
+    #    - {accept: Shift+Tab, send: Right, when: composing} #右移一個注音
+    #    - {accept: Tab, send: KP_Left, when: composing} #左移一個注音
+    ### 選字翻頁 ###
+    - { accept: Left, send: Page_Up, when: paging } #直式選單用
+    - { accept: Right, send: Page_Down, when: paging } #直式選單用
+    #    - {accept: Up, send: Page_Up, when: paging} #橫式選單用
+    #    - {accept: Down, send: Page_Down, when: paging} #橫式選單用
+    #    - {accept: Left, send: Left, when: has_menu} #橫式選單用 #send: Shift+Up
+    #    - {accept: Right, send: Right, when: has_menu} #橫式選單用 #send: Shift+Down
+    - { accept: Shift+Down, send: Page_Down, when: has_menu } #選字時「Shift」+「下」翻頁。
+    - { accept: Shift+Up, send: Page_Up, when: paging } #選字時「Shift」+「上」翻頁。
+    #關#    - {accept: Tab, send: Page_Down, when: has_menu} #「tab」翻頁。
+    - { accept: Shift+Tab, send: Page_Up, when: paging } #選字時「Shift」+「tab」翻頁。
+    - { accept: Shift+space, send: Page_Down, when: has_menu } #選字時「Shift」+「空白鍵」翻頁。 #send: Right #send: Down
+    ##回復到 composing 狀態：
+    #關#    - {accept: Shift+space, send: Shift+Left, when: paging} #於選單列選字時，回復到輸入列（避免有時回復不了，故增加）。
+    - { accept: Tab, send: Shift+Left, when: paging } #於選單列選字時，回復到輸入列（避免有時回復不了，故增加）。
+    ### 空白鍵 ###
+    #    - {accept: space, send: Return, when: paging} #方向鍵選字時，space直接上屏（避免被一聲空格影響）
+    #    - {accept: space, send: Page_Down, when: paging} #方向鍵選字時，space翻頁（上條遮屏需開啟，否則「=」+「符號」會誤按）
+    ##    - {accept: space, send: Down, when: has_menu}
+    ##    - {accept: space, send: Down, when: paging}
+    ##    - {accept: space, send: space, when: composing}
+    #    - {accept: space, send: Escape, when: composing} #空碼時，按空格清除
+    #    - {accept: space, send: space, when: has_menu} #非空碼時，空白還是空白
+    ### 刪除鍵 ###
+    #    - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    #    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
+    #    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+    #    - {accept: backslash, send: Shift+BackSpace, when: has_menu} #「\」鍵位刪除整組拼音字符（一個字）。
+    #    - {accept: backslash, send: Shift+Return, when: has_menu} #「\」鍵位上屏英文。
+    ### 功能快捷鍵 ###
+    ## 上排切換(Mac)
+    - { accept: Control+Shift+6, toggle: back_mark, when: always }
+    ## 上排切換(Win)
+    - { accept: Control+Shift+asciicircum, toggle: back_mark, when: always }
+    #    - {accept: Control+Shift+6, toggle: character_range_bhjm, when: always}
+    #    - {accept: Control+Shift+7, toggle: emoji_segestion, when: always}
+    ## 切換樣態
+    - { accept: Control+bracketright, set_option: back_mark, when: always } #「國際音標和符號」提示碼開關
     # - {accept: Control+bracketright, toggle: back_mark, when: always } #「國際音標和符號」提示碼開關
-## 初始樣態(Mac)
-    - {accept: Control+Shift+bracketright, unset_option: back_mark, when: always } #「國際音標和符號」提示碼開關
-## 初始樣態(Win)
-    - {accept: Control+Shift+braceright, unset_option: back_mark, when: always } #「國際音標和符號」提示碼開關
+    ## 初始樣態(Mac)
+    - {
+        accept: Control+Shift+bracketright,
+        unset_option: back_mark,
+        when: always,
+      } #「國際音標和符號」提示碼開關
+    ## 初始樣態(Win)
+    - {
+        accept: Control+Shift+braceright,
+        unset_option: back_mark,
+        when: always,
+      } #「國際音標和符號」提示碼開關
 #    - {accept: Control+apostrophe, toggle: character_range_bhjm, when: always}
 #    - {accept: Return, send: space, when: has_menu} #return,enter直出
 
@@ -525,8 +533,8 @@ recognizer:
   # import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
-    email: "^[a-z][-_.0-9a-z]*@.*$"
-    url: "^(https?:|ftp[.:]|mailto:|file:).*$$"
+    email: '^[a-z][-_.0-9a-z]*@.*$'
+    url: '^(https?:|ftp[.:]|mailto:|file:).*$$'
 
 # __patch:
 #   # 使用八股文語言模型
